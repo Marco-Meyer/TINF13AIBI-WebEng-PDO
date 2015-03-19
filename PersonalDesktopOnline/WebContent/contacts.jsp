@@ -8,7 +8,7 @@
 </head>
 	<div id="contacts-header">
 		<span id="contacts">Kontakte</span>
-		<a href="newContact.html" class="button add">Hinzüfügen</a> 
+		<a href="newContact.html" class="button add">Hinzufügen</a> 
 		<!--  Button class="button save" onclick="saveChanges()">Speichern</Button> -->
     </div>
 	<div id="contacts-tabbar-container" >
