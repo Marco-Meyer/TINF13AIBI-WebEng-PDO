@@ -7,6 +7,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>Notiz-Liste</title>
 	<link rel="stylesheet" type="text/css" href="styles/NotesStyle.css"/>
+	<link rel="stylesheet" type="text/css" href="styles/apprise-v2.css"/>
+	<script type="text/javascript" src="scripts/jquery-1.11.2.js" ></script>
+	<script type="text/javascript" src="scripts/apprise-v2.js" ></script>	
+	<script type="text/javascript" src="scripts/NotesLogic.js" ></script>
 </head>
 <body>
 	<br>
@@ -14,19 +18,24 @@
 		NoteUtils.printNoteList(out);
 	%>
 	<br>
-	<form name="noteForm" method="post" action="NotesServlet">
+	<%-- <form name="noteForm" method="post" action="NotesServlet">
 		<h3>Notiz-Name: <input type="text" name="name"></h3>
 		<h3>Inhalt: <input type="text" name="text"></h3>
 		<h3>ID: <input type="number" name="id" value ="-1"></h3>
 		<p><input type="submit" name="Submit" value="Notiz hinzufügen"></p>
+	</form> --%>
+	<form name="addNewNoteForm" method="post" action="NotesServlet">
+		<input type="hidden" name="id" value=-1>
+		<input type="hidden" name="text" value="">
+		<p><input type="submit" name="Submit" value="Notiz hinzufügen"></p>
 	</form>
 	
-	<form name="deleteForm" method="post" action="DeleteNoteServlet">
+	<%--<form name="deleteForm" method="post" action="DeleteNoteServlet">
 		<h3>Id der zu löschenden Notiz: <input type="number" name="itemId"></h3>
 		<input type="submit" value="Löschen">
 	</form>
-	<br>
-	<form action="index.html">
+	<br> --%>
+	<form action="home.html">
     	<input type="submit" value="Zurück">
 	</form>
 </body>
