@@ -1,17 +1,11 @@
-package pdo.servlets;
+package pdo.utils;
 
 import java.io.IOException;
-//import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-//import java.sql.ResultSet;
 import java.sql.SQLException;
-//import java.sql.Statement;
 
-
-import javax.servlet.RequestDispatcher;
-//import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,16 +13,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ContactServlet
+ * Servlet implementation class DeleteContactServlet
  */
-@WebServlet("/ContactServlet")
-public class ContactServlet extends HttpServlet {
+@WebServlet("/DeleteContactServlet")
+public class DeleteContactServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ContactServlet() {
+    public DeleteContactServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,15 +32,13 @@ public class ContactServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	   }
-	
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
 		Connection connection = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -77,22 +69,20 @@ public class ContactServlet extends HttpServlet {
 	
 			String prename = request.getParameter("prename");
 	        String lastName = request.getParameter("lastName");
-	        String mail = request.getParameter("mail");
-	        String telephone = request.getParameter("telephone");
-	        String mobilephone = request.getParameter("mobilephone");
+//	        String mail = request.getParameter("mail");
+//	        String telephone = request.getParameter("telephone");
+//	        String mobilephone = request.getParameter("mobilephone");
 	               
 	        PreparedStatement ps = null;
 	        try {
-	            ps = connection.prepareStatement("insert into contact(prename, lastname, mail, telephone, mobilephone) values (?,?,?,?,?);");
+	            ps = connection.prepareStatement("DELETE FROM contact WHERE prename=? AND lastname=?");// Doesn´t work-> fullname must be splitted
 	            ps.setString(1, prename);
 	            ps.setString(2, lastName);
-	            ps.setString(3, mail);
-	            ps.setString(4, telephone);
-	            ps.setString(5, mobilephone);
+
 	             
 	            ps.execute();
 
-	            System.out.println("Writing to DB successful.");	
+	            System.out.println("Deleting from DB successful.");	
 	            request.getRequestDispatcher("contacts.jsp").forward(request, response);
 
 	            System.out.println("Back to JSP.");
@@ -112,3 +102,4 @@ public class ContactServlet extends HttpServlet {
 	}
 
 }
+

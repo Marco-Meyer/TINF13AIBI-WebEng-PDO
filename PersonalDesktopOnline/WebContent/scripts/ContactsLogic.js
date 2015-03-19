@@ -18,10 +18,6 @@ function highLightTab(tabs, tabIndex) {
 	}
 }
 
-function addContact(){
-	//bla
-}
-
-function showContacts(){
-	//blubb
+function deleteContact(){
+	
 }

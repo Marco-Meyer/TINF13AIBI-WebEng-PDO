@@ -1,5 +1,4 @@
 @CHARSET "ISO-8859-1";
-
 html, body
 {
 	height: 97%;
@@ -13,7 +12,7 @@ html, body
 		  "Malgun Gothic", Ebrima, "Khmer UI", Latha, "Nirmala UI", Tunga, "Lao UI", Lao, Leelawadee, Verdana, Arial, Helvetica, sans-serif;;
 }
 
-#form-header
+#search-header
 {
 	height: 4%;
 	width: 100%;
@@ -21,23 +20,13 @@ html, body
 	display: table;
 }
 
-#newContact
+#searchContact
 {
 	font-size: 14pt;
 	vertical-align: middle;
 	text-align: center;
 	display: table-cell;
 	padding-left: 1%;
-}
-
-form
-{
-	text-align: center;
-}
-
-.contact-form
-{
-	text-align: center;
 }
 
 .button {
@@ -76,22 +65,13 @@ form
     color: #000;
     border-color: #444;
 }
-input[type="submit"] {
-    background: url(http://cssdeck.com/uploads/media/items/5/5Fm069k.png) 10px 3px no-repeat #f3f3f3;
-    padding-left: 30px;
-}
 
-.delete {
+
+.back {
 	
 	float: left;
     background: url(http://cssdeck.com/uploads/media/items/5/5Fm069k.png)  10px -61px no-repeat #f3f3f3;
     padding-left: 30px;
-    vertical-align: middle;
+	vertical-align: middle;
 }
 
-input[placeholder]
-{
-	margin-top: 75px;
-	font-size: 14pt;
-	font-family: Arial;
-}
