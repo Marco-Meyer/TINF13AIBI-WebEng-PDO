@@ -11,20 +11,22 @@ function setupPage()
 function saveChanges() {
 	try
 	{
+		settings.update();
 		var request = new XMLHttpRequest();
-		console.log("request created");
-		request.onreadystatechange = function () { console.log(request.readyState); }
-				
+		request.onreadystatechange = function () {}		
 		request.open("POST", hostUrl, true);	
 		request.setRequestHeader("Content-type", "application/json");
-		var data = JSON.stringify(settings);
-		request.send(data);
+		request.send(JSON.stringify(settings));
 	}
 	catch(err)
 	{
 		console.log("error creating ajax-request: " + err.message);
 	}
 	
+}
+
+function createEditBox(text, id) {
+	Apprise(text, {input: true, targetId: id});
 }
 
 function toggleFeature(name) {
@@ -84,10 +86,68 @@ function highLightTab(tabs, tabIndex) {
 }
 
 function Settings() {
-	this.displayType = "Desktop";
-	this.pictureQuality = "High";
+	
+	this.displayType = "";
+	this.pictureQuality = "";
 	this.userInfo = { username: "", eMail: ""};
-	this.features = [ { name: "Kalender", enabled: true, url: "null" }, 
-	                  { name: "Uhrzeit", enabled: false, url: "null" }, 
-	                  { name: "Kontakte", enabled: false, url: "null" } ];
+	this.features = [];
+	
+	
+	this.getUrls = function () {
+		var urls = document.getElementsByClassName("url-label");
+		for(i = 0; i < urls.length; i++) {
+			this.features[i].url = urls[i].innerHTML;
+		}
+	}
+	this.getMail = function () {
+		this.userInfo.eMail = document.getElementById("user-mail").innerHTML;
+	}
+	this.getUserName = function () {
+		this.userInfo.username = document.getElementById("user-name").innerHTML;
+	}
+	
+	this.getDisplayType = function() {
+		var views = document.getElementsByName("view");
+		for(i = 0; i < views.length; i++) {
+			if(views[i].checked){
+				this.displayType = views[i].value;
+			}
+		}
+	}
+	
+	this.getPictureQuality = function() {
+		var qualities = document.getElementsByName("quality");
+		for(i = 0; i < qualities.length; i++) {
+			if(qualities[i].checked){
+				this.pictureQuality = qualities[i].value;
+			}
+		}
+	}
+	
+	this.getUserInfo = function() {
+		this.getMail();
+		this.getUserName();
+	}
+	
+	this.getFeatures = function () {
+		var features = [];
+		var featureElements = document.getElementsByClassName("features-table");
+		for(i = 0; i < featureElements.length; i++) {
+			var element = featureElements[i];
+			var newFeature = { name: "", enabled: false, url: "" };
+			newFeature.enabled = element.childNodes[0].firstChild.checked;
+			newFeature.name = element.childNodes[0].childNodes[1].innerHTML;
+			newFeature.url = element.childNodes[1].firstChild.innerHTML;
+			features.push(newFeature);
+		}
+		this.features = features;
+	}
+	
+	this.update = function() {
+		this.getUserInfo();
+		this.getUserName();
+		this.getDisplayType();
+		this.getPictureQuality();
+		this.getFeatures();
+	}
 }
