@@ -1,0 +1,25 @@
+@CHARSET "ISO-8859-1";
+body { 
+	background-image: url(../images/cork-texture.jpg);
+	background-repeat: no-repeat;	
+	background-size: 100% 100%;
+	background-attachment:fixed;
+}
+
+.note {
+	height: 100px; 
+	width: 100px;
+	background-image: url(../images/note.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	/*top: 5%;*/
+	padding: 20px;
+	display: inline-block;
+	font-size: 12px;
+}
+
+.note:hover {
+	height: 110px;
+	width: 110px;
+	font-size: 13px;
+}
