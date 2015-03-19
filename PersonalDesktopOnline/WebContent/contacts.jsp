@@ -7,15 +7,15 @@
 <title>PDO - Kontakte</title>
 </head>
 	<div id="contacts-header">
+		<a href="index.html" class="button back">Zurück</a> 
 		<span id="contacts">Kontakte</span>
 		<a href="newContact.html" class="button add">Hinzufügen</a> 
-		<!--  Button class="button save" onclick="saveChanges()">Speichern</Button> -->
     </div>
 	<div id="contacts-tabbar-container" >
 
 	<!-- border-right: 1px solid #A5A5A5; -->
 	
-	
+		<div name="tab" class="tabbar-element" onclick="tabSelectionChanged(0)"><p class="tab-label"><a href="##">#</a></p></div>
 		<div name="tab" class="tabbar-element" onclick="tabSelectionChanged(0)"><p class="tab-label"><a href="#A">A</a></p></div>
 		<div name="tab" class="tabbar-element" onclick="tabSelectionChanged(1)"><p class="tab-label"><a href="#B">B</a></p></div>
 		<div name="tab" class="tabbar-element" onclick="tabSelectionChanged(2)"><p class="tab-label"><a href="#C">C</a></p></div>
@@ -47,6 +47,7 @@
 	
 	<div id="contacts-categories-container">
 		<div id="letter-container" class="contacts-letter">
+			<h2 id="#">#</h2>
 			<h2 id="A">A</h2>
 			<h2 id="B">B</h2>
 			<h2 id="C">C</h2>
