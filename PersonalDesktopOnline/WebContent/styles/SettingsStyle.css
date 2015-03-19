@@ -26,6 +26,11 @@ li
 	margin-left: -40px;
 }
 
+table
+{
+	width: 100%;
+}
+
 #settings-header
 {
 	height: 4%;
@@ -103,11 +108,17 @@ li
 #features-container
 {
 	margin-top: 75px;
+	width: 950px;
 }
 #quality-container
 {
 	margin-top: 75px;
 }
+
+.features-table td
+{
+}
+
 #view-container {}
 #user-info-container {}
 #change-mail-container
