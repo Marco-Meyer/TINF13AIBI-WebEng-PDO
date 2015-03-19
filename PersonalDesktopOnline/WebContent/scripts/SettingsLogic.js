@@ -1,5 +1,5 @@
 
-var hostUrl = "http://localhost:8000/PersonalDesktopOnline/SettingsServlet"
+var hostUrl = "http://localhost:8000/PDO/SettingsServlet"
 var settings;
 
 function setupPage()

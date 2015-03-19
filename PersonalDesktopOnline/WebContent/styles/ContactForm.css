@@ -13,14 +13,7 @@ html, body
 		  "Malgun Gothic", Ebrima, "Khmer UI", Latha, "Nirmala UI", Tunga, "Lao UI", Lao, Leelawadee, Verdana, Arial, Helvetica, sans-serif;;
 }
 
-li
-{
-	list-style-type: none;
-	margin-bottom: 5px;
-	margin-left: -40px;
-}
-
-#contacts-header
+#form-header
 {
 	height: 4%;
 	width: 100%;
@@ -28,7 +21,7 @@ li
 	display: table;
 }
 
-#contacts
+#newContact
 {
 	font-size: 14pt;
 	vertical-align: middle;
@@ -37,80 +30,14 @@ li
 	padding-left: 1%;
 }
 
-#contacts-tabbar-container
+form
 {
-	width: 10%;
-	float: left;
-	border-right: 1px solid #A5A5A5;
-	overflow-y: scroll;
-	height: 100%;
+	text-align: center;
 }
 
-
-.contacts-container
+.contact-form
 {
-	width: 500px;
-	margin-left: 20px;
-
-}
-.tabbar-element
-{
-	width: 100%;
-	height: 60px;
-	display: table;
-	cursor: pointer;
-	color: #717171;
-	font-size: 16pt;
-	border-bottom: 1px solid #D3D3D3;
-	background: whitesmoke;
-}
-
-.tabbar-element :HOVER
-{
-	color: #717171;
-    border: 1px solid #D3D3D3;
-    background: rgba(205, 205, 205, 0.85);
-}
-
-.tabbar-element-selected
-{
-	width: 100%;
-	height: 60px;
-	display: table;
-	font-size: 16pt;
-    border-bottom: 1px solid #D3D3D3;
-    background: darkgrey;
-    color: whitesmoke;
-}
-
-.tab-label
-{
-	display: table-cell; 
-  	vertical-align: middle; 
-  	text-align: center; 
-}
-
-#contacts-categories-container
-{
-	width: 85%;
-	height: 96%;
-	display: inline-block;
-	
-	
-}
-
-.contacts-letter
-{
-	height: 100%;
-	width: 100%;
-	margin-left: 30px;
-	overflow-y: scroll;
-}
-
-h2
-{
-	border-bottom: 1px solid #A5A5A5;
-	width: 60%;
+	text-align: center;
 }
 
 .button {
@@ -149,16 +76,22 @@ h2
     color: #000;
     border-color: #444;
 }
+input[type="submit"] {
+    background: url(http://cssdeck.com/uploads/media/items/5/5Fm069k.png) 10px 3px no-repeat #f3f3f3;
+    padding-left: 30px;
+}
 
-.add {
-    background: url(http://cssdeck.com/uploads/media/items/5/5Fm069k.png) 10px -25px no-repeat #f3f3f3;
+.delete {
+	
+	float: left;
+    background: url(http://cssdeck.com/uploads/media/items/5/5Fm069k.png)  10px -61px no-repeat #f3f3f3;
     padding-left: 30px;
     vertical-align: middle;
 }
 
-.back {
-	float: left;
-    background: url(http://cssdeck.com/uploads/media/items/5/5Fm069k.png)  10px -61px no-repeat #f3f3f3;
-    padding-left: 30px;
-	vertical-align: middle;
+input[placeholder]
+{
+	margin-top: 75px;
+	font-size: 14pt;
+	font-family: Arial;
 }

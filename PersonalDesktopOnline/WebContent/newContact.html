@@ -2,38 +2,40 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="styles/ContactForm.css">
 <title>PDO - Neuer Kontakt</title>
 </head>
+<div id="form-header">
+		<a href="contacts.jsp" class="button delete">Abbrechen</a> 
+		<span id="newContact">Neuer Kontakt</span>
+    </div>
 <body>
-<form method="GET" action="ContactServlet"> 
-	 	
- 	<div>
-		<label for="prename">Vorname:</label>
-	 	<input type="text" id="prename" placeholder="Vorname" value=""> 
-	</div> 
-	<div>
-		<label for="lastName">Nachname:</label>
-	 	<input type="text" id="lastName" placeholder="Nachname" value=""> 
-	</div> 
-	<div>
-		<label for="mail">E-Mail:</label>
-	 	<input type="text" id="mail" placeholder="E-Mail" value=""> 
-	</div> 
-	<div>
-		<label for="telephone">Telefon:</label>
-	 	<input type="text" id="telephone" placeholder="Telefon" value=""> 
-	</div> 
-	<div>
-		<label for="mobilephone">Handy:</label>
-	 	<input type="text" id="mobilephone" placeholder="Handy" value=""> 
+<form method="POST" action="ContactServlet"> 
+	<div id="form">	 	
+	 	<div>
+			<label for="prename">Vorname: </label>
+		 	<input type="text" name="prename" placeholder="Vorname"> 
+		</div> 
+		<div>
+			<label for="lastName">Nachname: </label>
+		 	<input type="text" name="lastName" placeholder="Nachname"> 
+		</div> 
+		<div>
+			<label for="mail">E-Mail: </label>
+		 	<input type="text" name="mail" placeholder="E-Mail"> 
+		</div> 
+		<div>
+			<label for="telephone">Telefon: </label>
+		 	<input type="text" name="telephone" placeholder="Telefon"> 
+		</div> 
+		<div>
+			<label for="mobilephone">Handy: </label>
+		 	<input type="text" name="mobilephone" placeholder="Handy"> 
+		</div>
+		<div>
+			<input type="submit" name="submit" value="Hinzufügen"/> 
+		</div>
 	</div>
-	<div>
-		<input type="submit" name="submit" value="Hinzufügen"/> 
-	</div>
-	
- 
-
  </form>
-</form>
 </body>
 </html>
