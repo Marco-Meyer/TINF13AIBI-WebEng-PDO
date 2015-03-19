@@ -27,6 +27,23 @@ public class Settings {
 		
 		return output;
 	}
+	
+	public static Settings CreateDefaultSettings(String username) {
+		Settings output = new Settings();
+		output.displayType = DisplayType.Desktop;
+		output.pictureQuality = PictureQuality.Medium;
+		output.features = new ArrayList<Feature>();
+		output.features.add(new Feature("Kalender", "https://www.google.com/calendar?hl=de", true));
+		output.features.add(new Feature("Uhrzeit", "www.uhrzeit.org/atomuhr.php", true));
+		output.features.add(new Feature("Kontakte", "localhost:8000/PDO/contacts.jsp", true));
+		output.features.add(new Feature("Spiele", "http://www.spielen.com", true));
+		output.features.add(new Feature("News", "https://news.google.de/", true));
+		output.features.add(new Feature("Medien", "http://www.Dropbox.com", true));
+		output.features.add(new Feature("Dokumente", "http://www.Dropbox.com", true));
+		output.userInfo = new UserInfo(username, "");
+		
+		return output;
+	}
 
 	public UserInfo getUserInfo() {
 		return userInfo;

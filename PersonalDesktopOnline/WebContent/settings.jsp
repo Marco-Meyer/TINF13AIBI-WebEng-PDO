@@ -1,5 +1,9 @@
-<!DOCTYPE html>
 <%@ page import = "pdo.settings.*"%>
+<% 	
+		Settings settings = (Settings)session.getAttribute("SETTINGS");
+		settings.getUserInfo().setName((String)session.getAttribute("UserID"));
+%>
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="ISO-8859-1">	
@@ -11,11 +15,10 @@
 	<title>PDO - Einstellungen</title>
 </head>
 <body onload="setupPage()">
-	<%!Settings settings = Settings.CreateTestSettings(); %>
 	<div id="settings-header">
 		<span id="settings">Einstellungen</span>
-		<a href="index.html" class="button delete">Abbrechen</a>
-        <a href="index.html" class="button save" onclick="saveChanges()">Speichern</a>
+		<a href="home.html" class="button delete">Abbrechen</a>
+        <a href="home.html" class="button save" onclick="saveChanges()">Speichern</a>
     </div>
 	<div id="settings-tabbar-container" >
 		<div name="tab" class="tabbar-element" onclick="tabSelectionChanged(0)"><p class="tab-label">Anzeige</p></div>

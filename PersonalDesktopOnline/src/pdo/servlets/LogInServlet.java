@@ -2,6 +2,10 @@ package pdo.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +13,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.mysql.jdbc.PreparedStatement;
+
+import pdo.settings.Settings;
+import pdo.utils.DBConnectionManager;
 
 /**
  * Servlet implementation class LogInServlet
@@ -41,27 +50,42 @@ public class LogInServlet extends HttpServlet {
 		String UserID = request.getParameter("id");
 		String UserPW = request.getParameter("pw");
 		
-		response.setContentType("text/html");
-		PrintWriter out= response.getWriter();
+		Connection connection = DBConnectionManager.getDBConnection();
+		try {
+			//if user does not exist new user is created
+			if(!isValidUser(UserID, UserPW, connection)) {
+				response.sendRedirect("index.html");
+			}
+			else {
 
-		//test if exist
-		
-		
-		//create new...
-		
-		
-		//...or logIn..
-		
-		
-		//...or send to error page
-		
-		
-		//set session
-		session.setAttribute("UserID", UserID);
+				//set session
+				session.setAttribute("UserID", UserID);
+				session.setAttribute("SETTINGS", DBConnectionManager.getSettingsForUser(UserID, connection));
 
+				
+				//redirect
+				response.sendRedirect("home.html");
+			}	
+		} catch(Exception e) {
+			System.out.println(e.getMessage());
+		}	
+	}
+
+	private boolean isValidUser(String id, String pw, Connection connection) throws SQLException {
+		String query = "SELECT UserID, UserPW from users WHERE UserID = '" + id + "'";
+		ResultSet results = connection.prepareStatement(query).executeQuery();
+		if(results.first()) {
+			return results.getString("UserPW").equals(pw);
+		}
+		createNewUser(id, pw, connection);
+		return true;
+	}
+	
+	private void createNewUser(String id, String pw, Connection connection) throws SQLException {
 		
-		//redirect
-		response.sendRedirect("home.html");
+		String query = "INSERT into users (UserID, UserPW) VALUES ('" + id + "', '" + pw + "')";
+		connection.prepareStatement(query).executeUpdate();
+		DBConnectionManager.createNewSettings(Settings.CreateDefaultSettings(id), connection);
 	}
 
 }
