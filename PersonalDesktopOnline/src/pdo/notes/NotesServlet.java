@@ -2,7 +2,6 @@ package pdo.notes;
 
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,10 +35,11 @@ public class NotesServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
-		String name = (String) request.getParameter("name");
+		//String name = (String) request.getParameter("name");
 		String text = (String) request.getParameter("text");
 		long id = Long.parseLong(request.getParameter("id"));
-		NoteList.getInstance().changeItem(id, name, text);
+		System.out.println("text: " + text + " id: " + id);
+		NoteList.getInstance().changeItem(id, "", text);
 		request.getRequestDispatcher("NoteList.jsp").forward(request, response);
 	}
 }

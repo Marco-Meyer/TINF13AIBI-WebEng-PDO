@@ -8,25 +8,28 @@ import javax.servlet.jsp.JspWriter;
 public class NoteUtils {
 
 	static public void printNoteList(JspWriter writer) {
+		System.out.println("Starting print of note list");
 		List<Note> list = NoteList.getInstance().getList();
 		Iterator<Note> it = list.iterator();
 		Note currentNote;
 		try {
 			while (it.hasNext()) {
 				currentNote = it.next();
-				//writer.println("<div class='note' onClick='NoteUtils.clickNote(" + currentNote.getId() + ")'>");
 				writer.println("<div class='note'>");
-				writer.println(currentNote.getName());
-				writer.println("<br>");
+				writer.println("<div class='closeButton'"
+						+ "onClick='deleteNote(" + currentNote.getId() + ")'>"
+						+ "<img class='closeIcon' src='images/close-button.png' alt='Close'>"
+						+ "</div>");
+				writer.println("<div class='noteText' "
+						+ "id ='note-" + currentNote.getId() + "' "
+						+ "onclick=\"createEditBox('Neuer Text:', '" + currentNote.getId() +"')\">");
 				writer.println(currentNote.getText());
+				writer.println("</div>");
+				
 				writer.println("</div>");
 			}	
 		} catch (Exception e) {
 			System.out.println("Error while printing the note list");
 		}
-	}
-	
-	static public void clickNote(long itemId) {
-		System.out.println("clicked on item with id " + itemId);
 	}
 }
