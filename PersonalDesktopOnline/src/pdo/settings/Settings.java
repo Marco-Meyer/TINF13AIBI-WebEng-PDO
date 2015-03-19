@@ -20,9 +20,9 @@ public class Settings {
 		output.displayType = DisplayType.Desktop;
 		output.pictureQuality = PictureQuality.Medium;
 		output.features = new ArrayList<Feature>();
-		output.features.add(new Feature("Kalender", "null", true));
-		output.features.add(new Feature("Uhrzeit", "null", false));
-		output.features.add(new Feature("Kontakte", "null", false));
+		output.features.add(new Feature("Kalender", "https://www.google.com/calendar?hl=de", true));
+		output.features.add(new Feature("Uhrzeit", "www.uhrzeit.org/atomuhr.php", false));
+		output.features.add(new Feature("Kontakte", "localhost:8000/PDO/contacts.jsp", false));
 		output.userInfo = new UserInfo("FelixH", "felix.helfrich@gmail.com");
 		
 		return output;
