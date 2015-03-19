@@ -1,65 +1,38 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>PDO</title>
-		<link rel="stylesheet" type="text/css" href="styles/style.css"/>
-	</head>
-	<body>
-		<div id="options">
-			<a href="settings.jsp">
-				<img class="option_icon" src="images/gear.png" alt="Options">
-			</a>
-		</div>
-		<div>
-			<div id="notes">
-				<a href="notes.html">
-					<img class="notes_img" src="images/notizblock2.png" alt="Notizen">
-				</a>
-			</div>
-			<div id="bleistift">
-				<img id="bleistift_img" src="images/bleistift.png" alt="Bleistift">
-			</div>
-			<div id="media">
-				<a href="media.html">
-					<img class="media_img" src="images/media.png" alt="Medien">
-				</a>
-			</div>
-			<div id="calendar">
-				<a href="calendar.html">
-					<img class="calendar_img" src="images/kalender5.png" alt="Kalender">
-				</a>
-			</div>
-			<div id="news">
-				<a href="news.html">
-					<img class="news_img" src="images/news4.png" alt="Zeitung">
-				</a>
-			</div>
-			<!--div id="contacts">
-				<a href="contacts.html">
-					<img class="contacts_img" src="images/contacts.png" alt="Kontakte">
-				</a>
-			</div-->
-			<div id="contacts">
-				<a href="contacts.jsp">
-					<img class="contacts_img" src="images/contacts3.png" alt="Kontakte">
-				</a>
-			</div>
-			<div id="game">
-				<a href="game.html">
-					<img class="game_img" src="images/cube.png" alt="Spiele">
-				</a>
-			</div>
-			<div id="documents">
-				<a href="documents.html">
-					<img class="documents_img" src="images/documents2.png" alt="Dokumente">
-				</a>
-			</div>
-			<div id="unterlage">
-				<img class="unterlage_img" src="images/unterlage.png" alt="Unterlage">
-			</div>
-			<div id="kaffee">
-				<img class="kaffee_img" src="images/kaffee.png" alt="Kaffee">
-			</div>
-		</div>
-	</body>
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>CodePen - Sign Up/Login Box</title>
+
+    <link rel="stylesheet" href="styles/LogInStyle.css">
+
+</head>
+
+<body>
+
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<div id="logmsk" style="display: block;">
+    <div id='close'>X</div>
+    <div id="userbox">
+        <h1 id="signup" style="background-color: rgb(118, 171, 219); background-position: initial initial; background-repeat: initial initial;">Sign up</h1>
+        <div id="sumsk" style="display: none;">Sending</div>
+        <form method="post" action="LogInServlet">
+	        <input name="id" id="name" placeholder="ID" style="opacity: 1; background-color: rgb(255, 255, 255); background-position: initial initial; background-repeat: initial initial;">
+	        <input name="pw" id="pass" type="password" placeholder="Password" style="opacity: 1; background-color: rgb(255, 255, 255); background-position: initial initial; background-repeat: initial initial;">
+	        <p id="logint" style="opacity: 1;">Login as an existing user</p>
+	        <p id="nameal" style="display: none; opacity: 1;">ID:</p>
+	        <p id="passal" style="display: none; opacity: 1;">Password:</p>
+	        <button id="signupb" style="opacity: 0.2; cursor: default;">Sign up</button>
+    	</form>
+    </div>
+</div>
+
+  <script src="scripts/LogInScript.js"></script>
+
+</body>
+
 </html>
