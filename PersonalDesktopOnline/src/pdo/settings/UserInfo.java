@@ -1,6 +1,10 @@
 package pdo.settings;
 
+import com.google.gson.annotations.SerializedName;
+
 public class UserInfo {
+	
+	@SerializedName("username")
 	private String name;
 	private String eMail;
 	
