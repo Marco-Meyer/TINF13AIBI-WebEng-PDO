@@ -87,6 +87,7 @@ $(function () {
 
     function init() {
         flg.logt = 0
+        switchMode();
     }
 
     function initub() {
