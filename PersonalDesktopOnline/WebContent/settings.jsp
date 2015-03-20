@@ -81,7 +81,7 @@
 				<h3>Benutzerinformationen</h3>
 				<table>
 					<tr><td><p>Benutzer: </p></td><td><p id="user-name"><%= settings.getUserInfo().getName() %></p></td></tr>
-					<tr><td><p>E-Mail Adresse:</p></td><td><p id="user-mail" ><%= settings.getUserInfo().geteMail() %></p></td></tr>
+					<!-- <tr><td><p>E-Mail Adresse:</p></td><td><p id="user-mail" ><%= settings.getUserInfo().geteMail() %></p></td></tr> -->
 					
 				</table>	
 			</div>

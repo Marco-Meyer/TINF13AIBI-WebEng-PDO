@@ -37,9 +37,9 @@ public class DBConnectionManager {
 	}
     
     public static void updateSettings(Settings settings, Connection connection) throws SQLException {
-    	String settingsQuery = "REPLACE INTO usersettings (UserID, Displaytype, PictureQuality) " + 
+    	String settingsQuery = "INSERT INTO usersettings (UserID, Displaytype, PictureQuality) " + 
     	"VALUES('" + settings.getUserInfo().getName() + "', '" 
-    			   + settings.getDisplayType().toString() + "', '" + settings.getPictureQuality().toString() + "')";
+    			   + settings.getDisplayType().toString() + "', '" + settings.getPictureQuality().toString() + "') ON DUPLICATE KEY UPDATE DisplayType=VALUES(DisplayType), PictureQuality=(PictureQuality)";
     	connection.prepareStatement(settingsQuery).executeUpdate();
     	
 		for(Feature feature : settings.getFeatures()) {
@@ -48,8 +48,8 @@ public class DBConnectionManager {
     }
     
     public static void insertFeature(Feature feature, String userID, Connection connection) throws SQLException {
-		String featuresQuery = "REPLACE INTO features (UserID, Name, Url, IsEnabled) " 
-				+ "VALUES ('" + userID + "', '" + feature.getName() + "', '" + feature.getUrl() + "', " + (feature.isEnabled() ? 1 : 0) + ")"; 
+		String featuresQuery = "INSERT INTO features (UserID, Name, Url, IsEnabled) " 
+				+ "VALUES ('" + userID + "', '" + feature.getName() + "', '" + feature.getUrl() + "', " + (feature.isEnabled() ? 1 : 0) + ") ON DUPLICATE KEY UPDATE Url=VALUES(Url), IsEnabled=VALUES(IsEnabled)"; 
 		connection.prepareStatement(featuresQuery).executeUpdate();	
 	}
     
