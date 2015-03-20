@@ -10,11 +10,11 @@
 	username="root" 
 	password="tabea" 
 	driverClassName="com.mysql.jdbc.Driver" 
-	url="jdbc:mysql://localhost/contactdb" />
+	url="jdbc:mysql://localhost/pdodb" />
 	
 	<Realm className="org.apache.catalina.realm.JDBCRealm" 
 	driverName="com.mysql.jdbc.Driver" 
-	connectionURL="jdbc:mysql://localhost/contactdb" 
+	connectionURL="jdbc:mysql://localhost/pdodb" 
 	connectionName="root" 
 	connectionPassword="tabea" 
 	userTable="account" 

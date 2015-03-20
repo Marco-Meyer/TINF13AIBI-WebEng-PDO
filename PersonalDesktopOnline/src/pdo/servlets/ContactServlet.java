@@ -10,6 +10,7 @@ import java.sql.SQLException;
 //import java.sql.Statement;
 
 
+
 import javax.servlet.RequestDispatcher;
 //import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,6 +18,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import pdo.utils.DBConnectionManager;
 
 /**
  * Servlet implementation class ContactServlet
@@ -47,33 +50,32 @@ public class ContactServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		Connection connection = null;
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			System.out.println("Where is your MySQL JDBC Driver?");
-			e.printStackTrace();
-			return;
-		}
-	 
-		System.out.println("MySQL JDBC Driver Registered!");
+//		Connection connection = null;
+//		try {
+//			Class.forName("com.mysql.jdbc.Driver");
+//		} catch (ClassNotFoundException e) {
+//			System.out.println("Where is your MySQL JDBC Driver?");
+//			e.printStackTrace();
+//			return;
+//		}
+		Connection connection = DBConnectionManager.getDBConnection();
 		
 	 
-		try {
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/contactdb","root", "tabea");
-	 
-		} catch (SQLException e) {
-			System.out.println("Connection Failed! Check output console:");
-			e.printStackTrace();
-			return;
-		}
-	 
-		if (connection != null) {
-			System.out.println("You made it, take control your database now!");
-		} else {
-			System.out.println("Failed to make connection!");
-		
-		}
+//		try {
+//			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/contactdb","root", "tabea");
+//	 
+//		} catch (SQLException e) {
+//			System.out.println("Connection Failed! Check output console:");
+//			e.printStackTrace();
+//			return;
+//		}
+//	 
+//		if (connection != null) {
+//			System.out.println("You made it, take control your database now!");
+//		} else {
+//			System.out.println("Failed to make connection!");
+//		
+//		}
 	
 			String prename = request.getParameter("prename");
 	        String lastName = request.getParameter("lastName");

@@ -39,34 +39,34 @@ public class DeleteContactServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Connection connection = null;
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			System.out.println("Where is your MySQL JDBC Driver?");
-			e.printStackTrace();
-			return;
-		}
+//		Connection connection = null;
+//		try {
+//			Class.forName("com.mysql.jdbc.Driver");
+//		} catch (ClassNotFoundException e) {
+//			System.out.println("Where is your MySQL JDBC Driver?");
+//			e.printStackTrace();
+//			return;
+//		}
+//	 
+//		System.out.println("MySQL JDBC Driver Registered!");
+//		
+//	 
+//		try {
+//			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/contactdb","root", "tabea");
+//	 
+//		} catch (SQLException e) {
+//			System.out.println("Connection Failed! Check output console:");
+//			e.printStackTrace();
+//			return;
+//		}
 	 
-		System.out.println("MySQL JDBC Driver Registered!");
-		
-	 
-		try {
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/contactdb","root", "tabea");
-	 
-		} catch (SQLException e) {
-			System.out.println("Connection Failed! Check output console:");
-			e.printStackTrace();
-			return;
-		}
-	 
-		if (connection != null) {
-			System.out.println("You made it, take control your database now!");
-		} else {
-			System.out.println("Failed to make connection!");
-		
-		}
-	
+//		if (connection != null) {
+//			System.out.println("You made it, take control your database now!");
+//		} else {
+//			System.out.println("Failed to make connection!");
+//		
+//		}
+		Connection connection = DBConnectionManager.getDBConnection();
 			String prename = request.getParameter("prename");
 	        String lastName = request.getParameter("lastName");
 //	        String mail = request.getParameter("mail");

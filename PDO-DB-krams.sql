@@ -4,6 +4,14 @@ CREATE TABLE `pdodb`.`users` (
   PRIMARY KEY (`UserID`),
   UNIQUE INDEX `UserID_UNIQUE` (`UserID` ASC));
 
+ CREATE TABLE `pdodb`.`contact` (
+  `prename` VARCHAR(32) NOT NULL,
+  `lastname` VARCHAR(32) NOT NULL,
+  `mail` VARCHAR(32) NOT NULL,
+  `telephone` VARCHAR(32) NOT NULL,
+  `mobilephone` VARCHAR(32) NOT NULL,
+  PRIMARY KEY (`prename`, `lastname`)); 
+  
   CREATE TABLE `pdodb`.`usersettings` (
   `UserID` VARCHAR(32) NOT NULL,
   `DisplayType` VARCHAR(32) NULL,

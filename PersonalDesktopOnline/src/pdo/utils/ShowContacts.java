@@ -11,29 +11,30 @@ import java.util.List;
 public class ShowContacts {
 	static public List<String> showContacts(String letter){
 		
-		Connection connection=null;
+//		Connection connection=null;
 		Statement statement=null;
 		ResultSet resultSet=null;
 		String preName;
 		String lastName;
 		String fullName;
 		List<String> nameList = new ArrayList<>();
-		
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			System.out.println("Where is your MySQL JDBC Driver?");
-			e.printStackTrace();
-		
-		}	 
-		try {
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/contactdb","root", "tabea");
-	 
-		} catch (SQLException e) {
-			System.out.println("Connection Failed! Check output console:");
-			e.printStackTrace();
-			
-		}
+		Connection connection = DBConnectionManager.getDBConnection();
+//		
+//		try {
+//			Class.forName("com.mysql.jdbc.Driver");
+//		} catch (ClassNotFoundException e) {
+//			System.out.println("Where is your MySQL JDBC Driver?");
+//			e.printStackTrace();
+//		
+//		}	 
+//		try {
+//			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/contactdb","root", "tabea");
+//	 
+//		} catch (SQLException e) {
+//			System.out.println("Connection Failed! Check output console:");
+//			e.printStackTrace();
+//			
+//		}
 		
 		try {
 			statement = connection.createStatement();

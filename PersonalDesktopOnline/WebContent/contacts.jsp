@@ -68,46 +68,7 @@
 					out.println("<p>" + string + "</p>");
 					out.println("<a href=editContact.jsp class=button edit>Ändern</a>");
 				}
-				List<String> list2 = ShowContacts.showContacts("2");
-				for(String string : list2) {
-					out.println("<p>" + string + "</p>");
-					out.println("<a href=editContact.jsp class=button edit>Ändern</a>");
-				}
-				List<String> list3 = ShowContacts.showContacts("3");
-				for(String string : list3) {
-					out.println("<p>" + string + "</p>");
-					out.println("<a href=editContact.jsp class=button edit>Ändern</a>");
-				}
-				List<String> list4 = ShowContacts.showContacts("4");
-				for(String string : list4) {
-					out.println("<p>" + string + "</p>");
-					out.println("<a href=editContact.jsp class=button edit>Ändern</a>");
-				}
-				List<String> list5 = ShowContacts.showContacts("5");
-				for(String string : list5) {
-					out.println("<p>" + string + "</p>");
-					out.println("<a href=editContact.jsp class=button edit>Ändern</a>");
-				}
-				List<String> list6 = ShowContacts.showContacts("6");
-				for(String string : list6) {
-					out.println("<p>" + string + "</p>");
-					out.println("<a href=editContact.jsp class=button edit>Ändern</a>");
-				}
-				List<String> list7 = ShowContacts.showContacts("7");
-				for(String string : list1) {
-					out.println("<p>" + string + "</p>");
-					out.println("<a href=editContact.jsp class=button edit>Ändern</a>");
-				}
-				List<String> list8 = ShowContacts.showContacts("8");
-				for(String string : list8) {
-					out.println("<p>" + string + "</p>");
-					out.println("<a href=editContact.jsp class=button edit>Ändern</a>");
-				}
-				List<String> list9 = ShowContacts.showContacts("9");
-				for(String string : list9) {
-					out.println("<p>" + string + "</p>");
-					out.println("<a href=editContact.jsp class=button edit>Ändern</a>");
-				}
+				
 			%>
 			<h2 id="A">A</h2>
 			<%  

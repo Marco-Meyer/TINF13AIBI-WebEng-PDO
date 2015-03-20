@@ -41,7 +41,7 @@ public class SearchContactServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Connection connection=null;
+//		Connection connection=null;
 		Statement statement=null;
 		ResultSet resultSet=null;
 		String preName;
@@ -49,21 +49,22 @@ public class SearchContactServlet extends HttpServlet {
 		String fullName;
 		List<String> nameList = new ArrayList<>();
 		
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			System.out.println("Where is your MySQL JDBC Driver?");
-			e.printStackTrace();
-		
-		}	 
-		try {
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/contactdb","root", "tabea");
-	 
-		} catch (SQLException e) {
-			System.out.println("Connection Failed! Check output console:");
-			e.printStackTrace();
-			
-		}
+//		try {
+//			Class.forName("com.mysql.jdbc.Driver");
+//		} catch (ClassNotFoundException e) {
+//			System.out.println("Where is your MySQL JDBC Driver?");
+//			e.printStackTrace();
+//		
+//		}	 
+//		try {
+//			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/contactdb","root", "tabea");
+//	 
+//		} catch (SQLException e) {
+//			System.out.println("Connection Failed! Check output console:");
+//			e.printStackTrace();
+//			
+//		}
+		Connection connection = DBConnectionManager.getDBConnection();
 		
 		String searchKey = request.getParameter("search");
 		
