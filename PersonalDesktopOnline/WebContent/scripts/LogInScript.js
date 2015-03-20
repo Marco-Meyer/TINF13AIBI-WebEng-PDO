@@ -22,16 +22,8 @@ $(function () {
         $('#logmsk').fadeIn();
         ub(0)
     });
-    $('#logint').click(function () {
-        initub();
-        if (flg.logt == 0) {
-            ub(1);
-            flg.logt = 1
-        } else {
-            ub(0);
-            flg.logt = 0
-        }
-    });
+    $('#logint').click(switchMode);
+    
     $("#name").keyup(function () {
         var len = $('#name').val().length;
         if (len > 13 || len == 0) {
@@ -119,6 +111,17 @@ $(function () {
         }
     }
 
+	function switchMode() {
+        initub();
+        if (flg.logt == 0) {
+            ub(1);
+            flg.logt = 1
+        } else {
+            ub(0);
+            flg.logt = 0
+        }
+    }
+	
     function ub(flg) {
         if (flg == 0) {
             $('#signup').text('Sign up').css('background', '#76ABDB');
