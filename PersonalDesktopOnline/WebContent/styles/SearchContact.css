@@ -75,3 +75,12 @@ html, body
 	vertical-align: middle;
 }
 
+.edit {
+	vertical-align: middle;
+	float: right;
+    background: url(http://cssdeck.com/uploads/media/items/5/5Fm069k.png)  10px -61px no-repeat #f3f3f3;
+    padding-left: 30px;
+    display: inline-block;
+}
+
+

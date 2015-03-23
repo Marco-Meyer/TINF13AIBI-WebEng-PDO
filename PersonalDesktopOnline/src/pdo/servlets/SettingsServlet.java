@@ -55,7 +55,4 @@ public class SettingsServlet extends HttpServlet {
 		
 	}
 	
-	
-	
-
 }

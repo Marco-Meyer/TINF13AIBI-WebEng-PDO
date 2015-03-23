@@ -50,67 +50,38 @@ public class ContactServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-//		Connection connection = null;
-//		try {
-//			Class.forName("com.mysql.jdbc.Driver");
-//		} catch (ClassNotFoundException e) {
-//			System.out.println("Where is your MySQL JDBC Driver?");
-//			e.printStackTrace();
-//			return;
-//		}
 		Connection connection = DBConnectionManager.getDBConnection();
 		
-	 
-//		try {
-//			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/contactdb","root", "tabea");
-//	 
-//		} catch (SQLException e) {
-//			System.out.println("Connection Failed! Check output console:");
-//			e.printStackTrace();
-//			return;
-//		}
-//	 
-//		if (connection != null) {
-//			System.out.println("You made it, take control your database now!");
-//		} else {
-//			System.out.println("Failed to make connection!");
-//		
-//		}
-	
-			String prename = request.getParameter("prename");
-	        String lastName = request.getParameter("lastName");
-	        String mail = request.getParameter("mail");
-	        String telephone = request.getParameter("telephone");
-	        String mobilephone = request.getParameter("mobilephone");
-	               
-	        PreparedStatement ps = null;
-	        try {
-	            ps = connection.prepareStatement("insert into contact(prename, lastname, mail, telephone, mobilephone) values (?,?,?,?,?);");
-	            ps.setString(1, prename);
-	            ps.setString(2, lastName);
-	            ps.setString(3, mail);
-	            ps.setString(4, telephone);
-	            ps.setString(5, mobilephone);
-	             
-	            ps.execute();
+		String prename = request.getParameter("prename");
+        String lastName = request.getParameter("lastName");
+        String mail = request.getParameter("mail");
+        String telephone = request.getParameter("telephone");
+        String mobilephone = request.getParameter("mobilephone");
+               
+        PreparedStatement ps = null;
+        try {
+            ps = connection.prepareStatement("insert into contact(prename, lastname, mail, telephone, mobilephone) values (?,?,?,?,?);");
+            ps.setString(1, prename);
+            ps.setString(2, lastName);
+            ps.setString(3, mail);
+            ps.setString(4, telephone);
+            ps.setString(5, mobilephone);
+             
+            ps.execute();
 
-	            System.out.println("Writing to DB successful.");	
-	            request.getRequestDispatcher("contacts.jsp").forward(request, response);
+            System.out.println("Writing to DB successful.");	
+            request.getRequestDispatcher("contacts.jsp").forward(request, response);
 
-	            System.out.println("Back to JSP.");
-	        } catch (SQLException e) {
-	            e.printStackTrace();
-	        }finally{
-	            try {
-	                ps.close();
-	                connection.close();
-	            } catch (SQLException e) {
-	            	e.printStackTrace();
-	            	System.out.println("Error while close connection.");
-	            }
-	        }
-
-
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally{
+            try {
+                ps.close();
+                connection.close();
+            } catch (SQLException e) {
+            	e.printStackTrace();
+            	System.out.println("Error while close connection.");
+            }
+        }
 	}
-
 }

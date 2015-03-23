@@ -39,33 +39,7 @@ public class UpdateContactServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-//				Connection connection = null;
-//				try {
-//					Class.forName("com.mysql.jdbc.Driver");
-//				} catch (ClassNotFoundException e) {
-//					System.out.println("Where is your MySQL JDBC Driver?");
-//					e.printStackTrace();
-//					return;
-//				}
-//			 
-//				System.out.println("MySQL JDBC Driver Registered!");
-//				
-//			 
-//				try {
-//					connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/contactdb","root", "tabea");
-//			 
-//				} catch (SQLException e) {
-//					System.out.println("Connection Failed! Check output console:");
-//					e.printStackTrace();
-//					return;
-//				}
-//			 
-//				if (connection != null) {
-//					System.out.println("You made it, take control your database now!");
-//				} else {
-//					System.out.println("Failed to make connection!");
-//				
-//				}
+
 		Connection connection = DBConnectionManager.getDBConnection();
 			
 					String prename = request.getParameter("prename");
@@ -73,20 +47,23 @@ public class UpdateContactServlet extends HttpServlet {
 			        String mail = request.getParameter("mail");
 			        String telephone = request.getParameter("telephone");
 			        String mobilephone = request.getParameter("mobilephone");
+			        
+			        String oldPrename = request.getParameter("pre");
+			        String oldLastName = request.getParameter("last");
+			        String oldMail = request.getParameter("email");
+			        String oldTelephone = request.getParameter("phone");
+			        String oldMobilephone = request.getParameter("mphone");
 			               
 			        PreparedStatement ps = null;
 			        try {
-			            ps = connection.prepareStatement("UPDATE contact SET prename, lastname,...");// Doesn´t work-> fullname must be splitted
-			            ps.setString(1, prename);
-			            ps.setString(2, lastName);
-			            ps.setString(3, mail);
-			            ps.setString(4, telephone);
-			            ps.setString(5, mobilephone);
+			        	String query = 
+	        			"UPDATE contact SET prename='" + prename + "', lastname='" + lastName + "', mail='" + mail + "', telephone='" + telephone + "', mobilephone='" + mobilephone + "' WHERE prename='" + oldPrename + "' AND lastname='" + oldLastName + "' AND mail='" + oldMail + "' AND telephone='" + oldTelephone + "' AND mobilephone='" + oldMobilephone + "'" ;
+			            ps = connection.prepareStatement(query);
+			            ps.execute();
 
 			            System.out.println("Updating DB successful.");	
 			            request.getRequestDispatcher("contacts.jsp").forward(request, response);
 
-			            System.out.println("Back to JSP.");
 			        } catch (SQLException e) {
 			            e.printStackTrace();
 			        }finally{
@@ -98,9 +75,7 @@ public class UpdateContactServlet extends HttpServlet {
 			            	System.out.println("Error while close connection.");
 			            }
 			        }
-
-
 			}
 
 
-}
+	}

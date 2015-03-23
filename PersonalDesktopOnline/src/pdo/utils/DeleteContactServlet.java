@@ -39,64 +39,34 @@ public class DeleteContactServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-//		Connection connection = null;
-//		try {
-//			Class.forName("com.mysql.jdbc.Driver");
-//		} catch (ClassNotFoundException e) {
-//			System.out.println("Where is your MySQL JDBC Driver?");
-//			e.printStackTrace();
-//			return;
-//		}
-//	 
-//		System.out.println("MySQL JDBC Driver Registered!");
-//		
-//	 
-//		try {
-//			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/contactdb","root", "tabea");
-//	 
-//		} catch (SQLException e) {
-//			System.out.println("Connection Failed! Check output console:");
-//			e.printStackTrace();
-//			return;
-//		}
-	 
-//		if (connection != null) {
-//			System.out.println("You made it, take control your database now!");
-//		} else {
-//			System.out.println("Failed to make connection!");
-//		
-//		}
+
 		Connection connection = DBConnectionManager.getDBConnection();
-			String prename = request.getParameter("prename");
-	        String lastName = request.getParameter("lastName");
-//	        String mail = request.getParameter("mail");
-//	        String telephone = request.getParameter("telephone");
-//	        String mobilephone = request.getParameter("mobilephone");
-	               
-	        PreparedStatement ps = null;
-	        try {
-	            ps = connection.prepareStatement("DELETE FROM contact WHERE prename=? AND lastname=?");// Doesn´t work-> fullname must be splitted
-	            ps.setString(1, prename);
-	            ps.setString(2, lastName);
+		String prename = request.getParameter("pre");
+        String lastName = request.getParameter("last");
+        String mail = request.getParameter("email");
+        String telephone = request.getParameter("phone");
+        String mobilephone = request.getParameter("mphone");
+               
+        PreparedStatement ps = null;
+        try {
+        	String query = "DELETE FROM contact WHERE prename='" + prename + "' AND lastname='" + lastName + "' AND mail='" + mail + "' AND telephone='" + telephone + "' AND mobilephone='" + mobilephone + "'";
+            ps = connection.prepareStatement(query);
+            ps.execute();
 
-	             
-	            ps.execute();
-
-	            System.out.println("Deleting from DB successful.");	
-	            request.getRequestDispatcher("contacts.jsp").forward(request, response);
-
-	            System.out.println("Back to JSP.");
-	        } catch (SQLException e) {
-	            e.printStackTrace();
-	        }finally{
-	            try {
-	                ps.close();
-	                connection.close();
-	            } catch (SQLException e) {
-	            	e.printStackTrace();
-	            	System.out.println("Error while close connection.");
-	            }
-	        }
+            System.out.println("Deleting from DB successful.");	
+            request.getRequestDispatcher("contacts.jsp").forward(request, response);
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally{
+            try {
+                ps.close();
+                connection.close();
+            } catch (SQLException e) {
+            	e.printStackTrace();
+            	System.out.println("Error while close connection.");
+            }
+        }
 
 
 	}

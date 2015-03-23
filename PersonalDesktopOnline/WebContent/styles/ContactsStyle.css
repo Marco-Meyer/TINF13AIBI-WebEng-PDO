@@ -2,7 +2,7 @@
 
 html, body
 {
-	height: 97%;
+	height: 93%;
 	width: 100%;
 	margin: 0px;
 	padding: 0px;
@@ -43,9 +43,27 @@ li
 	float: left;
 	border-right: 1px solid #A5A5A5;
 	overflow-y: scroll;
+	scrollbar: scroll;
 	height: 100%;
 }
+#contacts-categories-container
+{
+	width: 87%;
+	height: 100%;
+	display: inline-block;
+	
+	
+}
 
+#letter-container.contacts-letter
+{
+	height: 100%;
+	width: 100%;
+	margin-left: 30px;
+	overflow-y: scroll;
+	scrollbar: scroll;
+	
+}
 
 .contacts-container
 {
@@ -88,23 +106,6 @@ li
 	display: table-cell; 
   	vertical-align: middle; 
   	text-align: center; 
-}
-
-#contacts-categories-container
-{
-	width: 85%;
-	height: 96%;
-	display: inline-block;
-	
-	
-}
-
-.contacts-letter
-{
-	height: 100%;
-	width: 100%;
-	margin-left: 30px;
-	overflow-y: scroll;
 }
 
 h2
@@ -155,6 +156,8 @@ h2
     padding-left: 30px;
     vertical-align: middle;
     float: right;
+    
+
 }
 
 .back {
@@ -168,6 +171,7 @@ h2
 	float: right;
     background: url(http://cssdeck.com/uploads/media/items/5/5Fm069k.png)  10px -61px no-repeat #f3f3f3;
     padding-left: 30px;
+    display: inline-block;
 	
 }
 

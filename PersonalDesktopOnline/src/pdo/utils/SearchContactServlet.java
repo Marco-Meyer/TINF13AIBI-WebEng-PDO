@@ -41,43 +41,32 @@ public class SearchContactServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		Connection connection=null;
 		Statement statement=null;
 		ResultSet resultSet=null;
 		String preName;
 		String lastName;
-		String fullName;
-		List<String> nameList = new ArrayList<>();
+		String mail;
+		String telephone;
+		String mobilephone;
 		
-//		try {
-//			Class.forName("com.mysql.jdbc.Driver");
-//		} catch (ClassNotFoundException e) {
-//			System.out.println("Where is your MySQL JDBC Driver?");
-//			e.printStackTrace();
-//		
-//		}	 
-//		try {
-//			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/contactdb","root", "tabea");
-//	 
-//		} catch (SQLException e) {
-//			System.out.println("Connection Failed! Check output console:");
-//			e.printStackTrace();
-//			
-//		}
+		List<Contact> nameList = new ArrayList<>();
+
 		Connection connection = DBConnectionManager.getDBConnection();
 		
 		String searchKey = request.getParameter("search");
 		
 		try {
 			statement = connection.createStatement();
-			String query = "SELECT prename, lastname FROM contact WHERE prename like '%"+ searchKey + "%' OR lastname like '%"+ searchKey + "%';";
+			String query = "SELECT * FROM contact WHERE prename like '%"+ searchKey + "%' OR lastname like '%"+ searchKey + "%';";
 			resultSet = statement.executeQuery(query);
 			while(resultSet.next()){
 				preName = resultSet.getString("prename");
 				lastName = resultSet.getString("lastname");
-				fullName = preName + " " + lastName;			
-				nameList.add(fullName);
-	
+				mail = resultSet.getString("mail");
+				telephone = resultSet.getString("telephone");
+				mobilephone = resultSet.getString("mobilephone");
+				Contact contact = new Contact(preName,lastName,mail,telephone,mobilephone);
+				nameList.add(contact);
 			}
 
 			request.setAttribute("nameList", nameList);

@@ -9,6 +9,7 @@
 	<meta charset="ISO-8859-1">	
 	<link rel="stylesheet" type="text/css" href="styles/SettingsStyle.css" />
 	<link rel="stylesheet" type="text/css" href="styles/apprise-v2.css"/>
+	<link rel="stylesheet" type="text/css" href="styles/Scrollbar.css" />
 	<script type="text/javascript" src="scripts/jquery-1.11.2.js" ></script>
 	<script type="text/javascript" src="scripts/apprise-v2.js" ></script>	
 	<script type="text/javascript" src="scripts/SettingsLogic.js" ></script>

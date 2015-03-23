@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 <%@ page import ="java.util.*"%>
-<%@ page import ="pdo.utils.ShowContacts"%>
+<%@ page import ="pdo.utils.Contact"%>
 <head>
 	<meta charset="ISO-8859-1">
 	<link rel="stylesheet" type="text/css" href="styles/ContactsStyle.css">
+	<link rel="stylesheet" type="text/css" href="styles/Scrollbar.css" />
 	<script type="text/javascript" src="scripts/ContactsLogic.js" ></script>
 <title>PDO - Kontakte</title>
 </head>
@@ -55,232 +56,226 @@
 	<div id="contacts-categories-container">
 		<div id="letter-container" class="contacts-letter">
 			<h2 id="#">#</h2>
-			<%  
-
-				List<String> list0 = ShowContacts.showContacts("0");
-				for(String string : list0) {
-					out.println("<p>" + string + "</p>");
-					out.println("<a href=editContact.jsp class=button edit>Ändern</a>");
-				}
-			
-				List<String> list1 = ShowContacts.showContacts("1");
-				for(String string : list1) {
-					out.println("<p>" + string + "</p>");
-					out.println("<a href=editContact.jsp class=button edit>Ändern</a>");
-				}
+			<%
+				List<Contact> list0 = Contact.showContacts("0");
+					for(Contact contact : list0) {
+						contact.editContact(contact, out);
+						contact.deleteContact(contact, out);
+					}
 				
+					List<Contact> list1 = Contact.showContacts("1");
+					for(Contact contact : list1) {
+						contact.editContact(contact, out);
+						contact.deleteContact(contact, out);
+					}
 			%>
 			<h2 id="A">A</h2>
-			<%  
-				List<String> listA = ShowContacts.showContacts("A");
-				for(String string : listA) {
-					out.println("<p>" + string + "</p>");
-					out.println("<a href=editContact.jsp class=button edit>Ändern</a>");
-					//out.println("<a href=contact.jsp class=button delete onclick=deleteContact()>Löschen</a>");
-					out.println("<form method=POST action=DeleteContactServlet>");
-					out.println("<input type=submit name=submit value=Löschen />");
-					out.println("</form>");
-				}
+			<%
+				List<Contact> listA = Contact.showContacts("A");
+					for(Contact contact : listA) {
+						contact.editContact(contact, out);
+						contact.deleteContact(contact, out);
+					}
 			%>
 			<h2 id="B">B</h2>
-			<%  
-				List<String> listB = ShowContacts.showContacts("B");
-				for(String string : listB) {
-					out.println("<p>" + string + "</p>");
-					out.println("<a href=editContact.jsp class=button edit>Ändern</a>");
-				}
+			<%
+				List<Contact> listB = Contact.showContacts("B");
+					for(Contact contact : listB) {
+						contact.editContact(contact, out);
+						contact.deleteContact(contact, out);
+					}
 			%>
 			<h2 id="C">C</h2>
-			<%  
-				List<String> listC = ShowContacts.showContacts("C");
-				for(String string : listC) {
-					out.println("<p>" + string + "</p>");
-					out.println("<a href=editContact.jsp class=button edit>Ändern</a>");
-				}
+			<%
+				List<Contact> listC = Contact.showContacts("C");
+					for(Contact contact : listC) {
+						contact.editContact(contact, out);
+						contact.deleteContact(contact, out);
+					}
 			%>
 			<h2 id="D">D</h2>
-			<%  
-				List<String> listD = ShowContacts.showContacts("D");
-				for(String string : listD) {
-					out.println("<p>" + string + "</p>");
-					out.println("<a href=editContact.jsp class=button edit>Ändern</a>");
-				}
+			<%
+				List<Contact> listD = Contact.showContacts("D");
+					for(Contact contact : listD) {
+						contact.editContact(contact, out);
+						contact.deleteContact(contact, out);
+					}
 			%>
 			<h2 id="E">E</h2>
-			<%  
-				List<String> listE = ShowContacts.showContacts("E");
-				for(String string : listE) {
-					out.println("<p>" + string + "</p>");
-					out.println("<a href=editContact.jsp class=button edit>Ändern</a>");
-				}
+			<%
+				List<Contact> listE = Contact.showContacts("E");
+					for(Contact contact : listE) {
+						contact.editContact(contact, out);
+						contact.deleteContact(contact, out);
+					}
 			%>
 			<h2 id="F">F</h2>
-			<%  
-				List<String> listF = ShowContacts.showContacts("F");
-				for(String string : listF) {
-					out.println("<p>" + string + "</p>");
-					out.println("<a href=editContact.jsp class=button edit>Ändern</a>");
-				}
+			<%
+				List<Contact> listF = Contact.showContacts("F");
+					for(Contact contact : listF) {
+						contact.editContact(contact, out);
+						contact.deleteContact(contact, out);
+					}
 			%>
 			<h2 id="G">G</h2>
-			<%  
-				List<String> listG = ShowContacts.showContacts("G");
-				for(String string : listG) {
-					out.println("<p>" + string + "</p>");
-					out.println("<a href=editContact.jsp class=button edit>Ändern</a>");
-				}
+			<%
+				List<Contact> listG = Contact.showContacts("G");
+					for(Contact contact : listG) {
+						contact.editContact(contact, out);
+						contact.deleteContact(contact, out);
+					}
 			%>
 			<h2 id="H">H</h2>
-			<%  
-				List<String> listH = ShowContacts.showContacts("H");
-				for(String string : listH) {
-					out.println("<p>" + string + "</p>");
-					out.println("<a href=editContact.jsp class=button edit>Ändern</a>");
-				}
+			<%
+				List<Contact> listH = Contact.showContacts("H");
+					for(Contact contact : listH) {
+						contact.editContact(contact, out);
+						contact.deleteContact(contact, out);
+					}
 			%>
 			<h2 id="I">I</h2>
-			<%  
-				List<String> listI = ShowContacts.showContacts("I");
-				for(String string : listI) {
-					out.println("<p>" + string + "</p>");
-					out.println("<a href=editContact.jsp class=button edit>Ändern</a>");
-				}
+			<%
+				List<Contact> listI = Contact.showContacts("I");
+					for(Contact contact : listI) {
+						contact.editContact(contact, out);
+						contact.deleteContact(contact, out);
+					}
 			%>
 			<h2 id="J">J</h2>
-			<%  
-				List<String> listJ = ShowContacts.showContacts("J");
-				for(String string : listJ) {
-					out.println("<p>" + string + "</p>");
-					out.println("<a href=editContact.jsp class=button edit>Ändern</a>");
-				}
+			<%
+				List<Contact> listJ = Contact.showContacts("J");
+					for(Contact contact : listJ) {
+						contact.editContact(contact, out);
+						contact.deleteContact(contact, out);
+					}
 			%>
 			<h2 id="K">K</h2>
-			<%  
-				List<String> listK = ShowContacts.showContacts("K");
-				for(String string : listK) {
-					out.println("<p>" + string + "</p>");
-					out.println("<a href=editContact.jsp class=button edit>Ändern</a>");
-				}
+			<%
+				List<Contact> listK = Contact.showContacts("K");
+					for(Contact contact : listK) {
+						contact.editContact(contact, out);
+						contact.deleteContact(contact, out);
+					}
 			%>
 			<h2 id="L">L</h2>
-			<%  
-				List<String> listL = ShowContacts.showContacts("L");
-				for(String string : listL) {
-					out.println("<p>" + string + "</p>");
-					out.println("<a href=editContact.jsp class=button edit>Ändern</a>");
-				}
+			<%
+				List<Contact> listL = Contact.showContacts("L");
+					for(Contact contact : listL) {
+						contact.editContact(contact, out);
+						contact.deleteContact(contact, out);
+					}
 			%>
 			<h2 id="M">M</h2>
-			<%  
-				List<String> listM = ShowContacts.showContacts("M");
-				for(String string : listM) {
-					out.println("<p>" + string + "</p>");
-					out.println("<a href=editContact.jsp class=button edit>Ändern</a>");
-				}
+			<%
+				List<Contact> listM = Contact.showContacts("M");
+					for(Contact contact : listM) {
+						contact.editContact(contact, out);
+						contact.deleteContact(contact, out);
+					}
 			%>
 			<h2 id="N">N</h2>
-			<%  
-				List<String> listN = ShowContacts.showContacts("N");
-				for(String string : listN) {
-					out.println("<p>" + string + "</p>");
-					out.println("<a href=editContact.jsp class=button edit>Ändern</a>");
-				}
+			<%
+				List<Contact> listN = Contact.showContacts("N");
+					for(Contact contact : listN) {
+						contact.editContact(contact, out);
+						contact.deleteContact(contact, out);
+					}
 			%>
 			<h2 id="O">O</h2>
-			<%  
-				List<String> listO = ShowContacts.showContacts("O");
-				for(String string : listO) {
-					out.println("<p>" + string + "</p>");
-					out.println("<a href=editContact.jsp class=button edit>Ändern</a>");
-				}
+			<%
+				List<Contact> listO = Contact.showContacts("O");
+					for(Contact contact : listO) {
+						contact.editContact(contact, out);
+						contact.deleteContact(contact, out);
+					}
 			%>
 			<h2 id="P">P</h2>
-			<%  
-				List<String> listP = ShowContacts.showContacts("P");
-				for(String string : listP) {
-					out.println("<p>" + string + "</p>");
-					out.println("<a href=editContact.jsp class=button edit>Ändern</a>");
-				}
+			<%
+				List<Contact> listP = Contact.showContacts("P");
+					for(Contact contact : listP) {
+						contact.editContact(contact, out);
+						contact.deleteContact(contact, out);
+					}
 			%>
 			<h2 id="Q">Q</h2>
-			<%  
-				List<String> listQ = ShowContacts.showContacts("Q");
-				for(String string : listQ) {
-					out.println("<p>" + string + "</p>");
-					out.println("<a href=editContact.jsp class=button edit>Ändern</a>");
-				}
+			<%
+				List<Contact> listQ = Contact.showContacts("Q");
+					for(Contact contact : listQ) {
+						contact.editContact(contact, out);
+						contact.deleteContact(contact, out);
+					}
 			%>
 			<h2 id="R">R</h2>
-			<%  
-				List<String> listR = ShowContacts.showContacts("R");
-				for(String string : listR) {
-					out.println("<p>" + string + "</p>");
-					out.println("<a href=editContact.jsp class=button edit>Ändern</a>");
-				}
+			<%
+				List<Contact> listR = Contact.showContacts("R");
+					for(Contact contact : listR) {
+						contact.editContact(contact, out);
+						contact.deleteContact(contact, out);
+					}
 			%>
 			<h2 id="S">S</h2>
-			<%  
-				List<String> listS = ShowContacts.showContacts("S");
-				for(String string : listS) {
-					out.println("<p>" + string + "</p>");
-					out.println("<a href=editContact.jsp class=button edit>Ändern</a>");
-				}
+			<%
+				List<Contact> listS = Contact.showContacts("S");
+					for(Contact contact : listS) {
+						contact.editContact(contact, out);
+						contact.deleteContact(contact, out);
+					}
 			%>
 			<h2 id="T">T</h2>
-			<%  
-				List<String> listT = ShowContacts.showContacts("T");
-				for(String string : listT) {
-					out.println("<p>" + string + "</p>");
-					out.println("<a href=editContact.jsp class=button edit>Ändern</a>");
-				}
+			<%
+				List<Contact> listT = Contact.showContacts("T");
+					for(Contact contact : listT) {
+						contact.editContact(contact, out);
+						contact.deleteContact(contact, out);
+					}
 			%>
 			<h2 id="U">U</h2>
-			<%  
-				List<String> listU = ShowContacts.showContacts("U");
-				for(String string : listU) {
-					out.println("<p>" + string + "</p>");
-					out.println("<a href=editContact.jsp class=button edit>Ändern</a>");
-				}
+			<%
+				List<Contact> listU = Contact.showContacts("U");
+					for(Contact contact : listU) {
+						contact.editContact(contact, out);
+						contact.deleteContact(contact, out);
+					}
 			%>
 			<h2 id="V">V</h2>
-			<%  
-				List<String> listV = ShowContacts.showContacts("V");
-				for(String string : listV) {
-					out.println("<p>" + string + "</p>");
-					out.println("<a href=editContact.jsp class=button edit>Ändern</a>");
-				}
+			<%
+				List<Contact> listV = Contact.showContacts("V");
+					for(Contact contact : listV) {
+						contact.editContact(contact, out);
+						contact.deleteContact(contact, out);
+					}
 			%>
 			<h2 id="W">W</h2>
-			<%  
-				List<String> listW = ShowContacts.showContacts("W");
-				for(String string : listW) {
-					out.println("<p>" + string + "</p>");
-					out.println("<a href=editContact.jsp class=button edit>Ändern</a>");
-				}
+			<%
+				List<Contact> listW = Contact.showContacts("W");
+					for(Contact contact : listW) {
+						contact.editContact(contact, out);
+						contact.deleteContact(contact, out);
+					}
 			%>
 			<h2 id="X">X</h2>
-			<%  
-				List<String> listX = ShowContacts.showContacts("X");
-				for(String string : listX) {
-					out.println("<p>" + string + "</p>");
-					out.println("<a href=editContact.jsp class=button edit>Ändern</a>");
-				}
+			<%
+				List<Contact> listX = Contact.showContacts("X");
+					for(Contact contact : listX) {
+						contact.editContact(contact, out);
+						contact.deleteContact(contact, out);
+					}
 			%>
 			<h2 id="Y">Y</h2>
-			<%  
-				List<String> listY = ShowContacts.showContacts("Y");
-				for(String string : listY) {
-					out.println("<p>" + string + "</p>");
-					out.println("<a href=editContact.jsp class=button edit>Ändern</a>");
-				}
+			<%
+				List<Contact> listY = Contact.showContacts("Y");
+					for(Contact contact : listY) {
+						contact.editContact(contact, out);
+						contact.deleteContact(contact, out);
+					}
 			%>
 			<h2 id="Z">Z</h2>
-			<%  
-				List<String> listZ = ShowContacts.showContacts("Z");
-				for(String string : listZ) {
-					out.println("<p>" + string + "</p>");
-					out.println("<a href=editContact.jsp class=button edit>Ändern</a>");
-				}
+			<%
+				List<Contact> listZ = Contact.showContacts("Z");
+					for(Contact contact : listZ) {
+						contact.editContact(contact, out);
+						contact.deleteContact(contact, out);
+					}
 			%>
 		</div>
 	</div> 
