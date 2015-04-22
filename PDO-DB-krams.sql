@@ -1,8 +1,14 @@
-CREATE TABLE `pdodb`.`users` (
-  `UserID` VARCHAR(32) NOT NULL,
-  `UserPW` VARCHAR(32) NULL,
-  PRIMARY KEY (`UserID`),
-  UNIQUE INDEX `UserID_UNIQUE` (`UserID` ASC));
+ create table pdodb.users (
+  UserID         varchar(15) not null primary key,
+  UserPW         varchar(15) not null,
+  EMail			 varchar(25) null
+);
+
+create table pdodb.roles (
+  UserID         varchar(15) not null,
+  role         varchar(15) not null,
+  primary key (UserID, role)
+);
 
  CREATE TABLE `pdodb`.`contact` (
   `prename` VARCHAR(32) NOT NULL,
@@ -18,8 +24,6 @@ CREATE TABLE `pdodb`.`users` (
   `PictureQuality` VARCHAR(32) NULL,
   PRIMARY KEY (`UserID`));
 
-  ALTER TABLE `pdodb`.`users` 
-ADD COLUMN `E-Mail` VARCHAR(45) NULL AFTER `UserPW`;
 
 CREATE TABLE `pdodb`.`features` (
   `UserID` VARCHAR(32) NOT NULL,
@@ -27,6 +31,10 @@ CREATE TABLE `pdodb`.`features` (
   `Url` TEXT NULL,
   `IsEnabled` TINYINT(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`UserID`, `Name`));
+  
+
+  
+  
 
   
   

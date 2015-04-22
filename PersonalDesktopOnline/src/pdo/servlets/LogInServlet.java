@@ -64,7 +64,7 @@ public class LogInServlet extends HttpServlet {
 
 				
 				//redirect
-				response.sendRedirect("home.html");
+				response.sendRedirect("protected/home.html");
 			}	
 		} catch(Exception e) {
 			System.out.println(e.getMessage());

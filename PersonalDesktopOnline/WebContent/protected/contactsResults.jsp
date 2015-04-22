@@ -2,7 +2,6 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import ="java.util.*"%>
-<%@ page import ="pdo.utils.Contact"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -15,15 +14,14 @@
 </div>
 <body>
 
-<%
-	int count=0;
-	List<Contact> list = (List<Contact>)request.getAttribute("nameList");
-	for(Contact contact : list) {
-		contact.editContact(contact, out);
-		contact.deleteContact(contact, out);
-		count++;
+<%  
+	// retrieve your list from the request, with casting 
+	List<String> list = (List<String>) request.getAttribute("nameList");
+	
+	// print the information about every category of the list
+	for(String string : list) {
+		out.println("<p>" + string + "</p>");
 	}
-	 out.println("<p>Ihre Sucheingabe lieferte " + count + " Ergebniss(e).</p>");
 %>
 
 </body>

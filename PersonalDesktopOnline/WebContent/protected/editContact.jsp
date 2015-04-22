@@ -17,28 +17,24 @@
 	<div id="form">	 	
 	 	<div>
 			<label for="prename">Vorname: </label>
-		 	<input type="text" name="prename" value="<%= request.getAttribute("PRE")%>">
-		 	<input type=hidden name=pre value="<%= request.getAttribute("PRE")%>">
+		 	<input type="text" name="prename" value="">
+		 	<!-- doesn´t work yet because fullname must be splitted first -->
 		</div> 
 		<div>
 			<label for="lastName">Nachname: </label>
-		 	<input type="text" name="lastName" value="<%= request.getAttribute("LAST")%>"> 
-		 	<input type=hidden name=last value="<%= request.getAttribute("LAST")%>">
+		 	<input type="text" name="lastName" value""> 
 		</div> 
 		<div>
 			<label for="mail">E-Mail: </label>
-		 	<input type="text" name="mail" value="<%= request.getAttribute("EMAIL")%>">
-		 	<input type=hidden name=email value="<%= request.getAttribute("EMAIL")%>"> 
+		 	<input type="text" name="mail" value""> 
 		</div> 
 		<div>
 			<label for="telephone">Telefon: </label>
-		 	<input type="text" name="telephone" value="<%= request.getAttribute("PHONE")%>">
-		 	<input type=hidden name=phone value="<%= request.getAttribute("PHONE")%>"> 
+		 	<input type="text" name="telephone" value""> 
 		</div> 
 		<div>
 			<label for="mobilephone">Handy: </label>
-		 	<input type="text" name="mobilephone" value="<%= request.getAttribute("MPHONE")%>">
-		 	<input type=hidden name=mphone value="<%= request.getAttribute("MPHONE")%>"> 
+		 	<input type="text" name="mobilephone" value""> 
 		</div>
 		<div>
 			<input type="submit" name="submit" value="Ändern"/> 

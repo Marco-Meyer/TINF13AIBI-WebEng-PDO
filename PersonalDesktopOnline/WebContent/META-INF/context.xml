@@ -10,17 +10,17 @@
 	username="root" 
 	password="tabea" 
 	driverClassName="com.mysql.jdbc.Driver" 
-	url="jdbc:mysql://localhost/pdodb" />
+	url="jdbc:mysql://localhost:3306/pdodb" />
 	
 	<Realm className="org.apache.catalina.realm.JDBCRealm" 
 	driverName="com.mysql.jdbc.Driver" 
-	connectionURL="jdbc:mysql://localhost/pdodb" 
+	connectionURL="jdbc:mysql://localhost:3306/pdodb" 
 	connectionName="root" 
 	connectionPassword="tabea" 
-	userTable="account" 
-	userNameCol="credentialUserName" 
-	userCredCol="credentialPassword" 
-	userRoleTable="account" 
+	userTable="users" 
+	userNameCol="UserID" 
+	userCredCol="UserPW" 
+	userRoleTable="roles" 
 	roleNameCol="role" />
 	
 </Context>

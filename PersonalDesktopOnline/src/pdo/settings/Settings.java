@@ -44,6 +44,15 @@ public class Settings {
 		
 		return output;
 	}
+	
+	public boolean featureIsEnables(String name) {
+		for(Feature feature : getFeatures()) {
+			if(feature.getName().equals(name)) {
+				return feature.isEnabled();
+			}
+		}
+		return false;
+	}
 
 	public UserInfo getUserInfo() {
 		return userInfo;

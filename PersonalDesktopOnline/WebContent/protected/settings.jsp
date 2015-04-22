@@ -7,19 +7,18 @@
 <html>
 <head>
 	<meta charset="ISO-8859-1">	
-	<link rel="stylesheet" type="text/css" href="styles/SettingsStyle.css" />
-	<link rel="stylesheet" type="text/css" href="styles/apprise-v2.css"/>
-	<link rel="stylesheet" type="text/css" href="styles/Scrollbar.css" />
-	<script type="text/javascript" src="scripts/jquery-1.11.2.js" ></script>
-	<script type="text/javascript" src="scripts/apprise-v2.js" ></script>	
-	<script type="text/javascript" src="scripts/SettingsLogic.js" ></script>
+	<link rel="stylesheet" type="text/css" href="../styles/SettingsStyle.css" />
+	<link rel="stylesheet" type="text/css" href="../styles/apprise-v2.css"/>
+	<script type="text/javascript" src="../scripts/jquery-1.11.2.js" ></script>
+	<script type="text/javascript" src="../scripts/apprise-v2.js" ></script>	
+	<script type="text/javascript" src="../scripts/SettingsLogic.js" ></script>
 	<title>PDO - Einstellungen</title>
 </head>
 <body onload="setupPage()">
 	<div id="settings-header">
 		<span id="settings">Einstellungen</span>
-		<a href="home.html" class="button delete">Abbrechen</a>
-        <a href="home.html" class="button save" onclick="saveChanges()">Speichern</a>
+		<a href="home.jsp" class="button delete">Abbrechen</a>
+        <a href="home.jsp" class="button save" onclick="saveChanges()">Speichern</a>
     </div>
 	<div id="settings-tabbar-container" >
 		<div name="tab" class="tabbar-element" onclick="tabSelectionChanged(0)"><p class="tab-label">Anzeige</p></div>
