@@ -53,6 +53,15 @@ public class Settings {
 		}
 		return false;
 	}
+	
+	public String getURLForFeature(String name) {
+		for(Feature feature : getFeatures()) {
+			if(feature.getName().equals(name)) {
+				return feature.getUrl();
+			}
+		}
+		return null;
+	}
 
 	public UserInfo getUserInfo() {
 		return userInfo;

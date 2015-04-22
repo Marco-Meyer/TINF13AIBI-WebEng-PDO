@@ -1,7 +1,15 @@
 <%@ page import = "pdo.settings.*"%>
-<% 	
-		Settings settings = (Settings)session.getAttribute("SETTINGS");
-		settings.getUserInfo().setName((String)session.getAttribute("UserID"));
+<%@ page import = "pdo.utils.*"%>
+<% 		
+		Settings settings;
+		if(session.getAttribute("SETTINGS") == null) {
+			settings = DBConnectionManager.getSettingsForUser(request.getUserPrincipal().getName(), DBConnectionManager.getDBConnection());
+			session.setAttribute("SETTINGS", settings);
+		}
+		else {
+			settings = (Settings)session.getAttribute("SETTINGS");
+		}
+		settings.getUserInfo().setName(request.getUserPrincipal().getName());
 %>
 <!DOCTYPE html>
 <html>
@@ -18,7 +26,7 @@
 	<div id="settings-header">
 		<span id="settings">Einstellungen</span>
 		<a href="home.jsp" class="button delete">Abbrechen</a>
-        <a href="home.jsp" class="button save" onclick="saveChanges()">Speichern</a>
+        <button class="button save" onclick="saveChanges()">Speichern</button>
     </div>
 	<div id="settings-tabbar-container" >
 		<div name="tab" class="tabbar-element" onclick="tabSelectionChanged(0)"><p class="tab-label">Anzeige</p></div>
