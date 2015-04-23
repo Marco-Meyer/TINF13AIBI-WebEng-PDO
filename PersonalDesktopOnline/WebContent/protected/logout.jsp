@@ -7,6 +7,7 @@
 </head>
 <body>
 Logout Erfolgreich!
-<% session.invalidate();%>
+<% session.invalidate();
+   response.sendRedirect("home.jsp"); %>
 </body>
 </html>

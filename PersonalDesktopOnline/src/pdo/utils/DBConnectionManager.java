@@ -16,7 +16,6 @@ public class DBConnectionManager {
 	private Connection connection;
      
 	public DBConnectionManager(String dbURL, String user, String pwd) throws ClassNotFoundException, SQLException{
-		
 		Connection connection = null;
     	Class.forName("com.mysql.jdbc.Driver");
     	this.connection = DriverManager.getConnection(dbURL, user, pwd);
@@ -25,6 +24,11 @@ public class DBConnectionManager {
 	     
     public Connection getConnection(){
         return this.connection;
+    }
+    
+    public static void createNewUser(String username, String password, String role) throws SQLException {
+    	getDBConnection().prepareStatement("INSERT into users (UserID, UserPW) VALUES ('" + username + "', '" + password + "')").executeUpdate();
+    	getDBConnection().prepareStatement("INSERT into roles (UserID, role) VALUES ('" + username + "', '" + role + "')").executeUpdate();
     }
     
     public static void createNewSettings(Settings settings, Connection connection) throws SQLException {
