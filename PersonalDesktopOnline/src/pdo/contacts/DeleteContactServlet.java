@@ -34,6 +34,7 @@ public class DeleteContactServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		response.sendRedirect("protected/contacts.jsp");
 	}
 
 	/**
@@ -57,7 +58,8 @@ public class DeleteContactServlet extends HttpServlet {
             ps.execute();
 
             System.out.println("Deleting from DB successful.");	
-            request.getRequestDispatcher("protected/contacts.jsp").forward(request, response);
+            //request.getRequestDispatcher("protected/contacts.jsp").forward(request, response);
+            response.sendRedirect("protected/contacts.jsp");
             
         } catch (SQLException e) {
             e.printStackTrace();

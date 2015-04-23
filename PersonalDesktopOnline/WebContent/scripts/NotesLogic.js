@@ -27,6 +27,9 @@ function changeNote(id, text) {
 		var request = new XMLHttpRequest();
 		var idValue = id;
 		var textValue = text;
+		if (textValue == null) {
+			textValue = "";
+		} 
 		var parameters="id="+idValue+"&text="+textValue;
 		console.log("the post-parameters are: " + parameters);
 		
@@ -50,14 +53,6 @@ function deleteNote(id) {
 		var idValue = id;
 		var parameters="itemId="+idValue;
 		post(deleteUrl, {itemId: id});
-		/*var request = new XMLHttpRequest();
-		console.log("the post-parameters are: " + parameters);
-		request.onreadystatechange = function () {}		
-		request.open("POST", deleteUrl, true);
-		request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		request.setRequestHeader("Content-length", parameters.length);
-		request.setRequestHeader("Connection", "close");
-		request.send(parameters);*/
 	}
 	catch(err)
 	{

@@ -115,13 +115,13 @@ public class Contact implements Serializable{
 //		String telephone;
 //		String mobilephone;
 //		
-//		List<Contact> nameList = new ArrayList<>();
+//		List<Contact> contactList = new ArrayList<>();
 //		
 //		Connection connection = DBConnectionManager.getDBConnection();
 //		
 //		try {
 //			statement = connection.createStatement();
-//			String query = "SELECT * FROM contact WHERE '"+ UserId + "' AND prename like '"+ letter + "%';";
+//			String query = "SELECT * FROM contact WHERE UserID='"+ UserId + "' AND prename like '"+ letter + "%';";
 //			resultSet = statement.executeQuery(query);
 //			while(resultSet.next()){
 //				userID = resultSet.getString("userID");
@@ -131,7 +131,8 @@ public class Contact implements Serializable{
 //				telephone = resultSet.getString("telephone");
 //				mobilephone = resultSet.getString("mobilephone");
 //				Contact contact = new Contact(userID, preName,lastName,mail,telephone,mobilephone);
-//				nameList.add(contact);
+//				System.out.println(contact.toString());
+//				contactList.add(contact);
 //			}	
 //			
 //		} catch (SQLException e) {
@@ -164,13 +165,13 @@ public class Contact implements Serializable{
 //			}         
 //			connection=null;
 //		}
-//		return nameList;
+//		return contactList;
 //	}
 
 	static public JspWriter editContact(Contact contact, JspWriter out){
 		try {
 			out.println("<p>" + contact.toString());
-			out.println("<form method=POST action=EditContactServlet>");
+			out.println("<form method=POST action=../EditContactServlet>");
 			out.println("<input type=hidden name=pre value=" + contact.prename + ">"); 
 			out.println("<input type=hidden name=last value=" + contact.lastName + ">");
 			out.println("<input type=hidden name=email value=" + contact.mail + ">");
@@ -186,10 +187,22 @@ public class Contact implements Serializable{
 		return out;
 		
 	}
+	
+	static public JspWriter showContact(Contact contact, JspWriter out){
+		try {
+			out.println("<p>" + contact.toString());
+			out.println("<br/>");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return out;
+		
+	}
 
 	static public JspWriter deleteContact(Contact contact,JspWriter out){
 		try {
-			out.println("<form method=POST action=DeleteContactServlet>");
+			out.println("<form method=POST action=../DeleteContactServlet>");
 			out.println("<input type=hidden name=pre value=" + contact.prename + ">");
 			out.println("<input type=hidden name=last value=" + contact.lastName + ">");
 			out.println("<input type=hidden name=email value=" + contact.mail + ">");

@@ -10,17 +10,18 @@
 <title>PDO - Kontakte - Suchergebnisse</title>
 </head>
 <div id="search-header">
-		<a href="contacts.jsp" class="button back">Zurück</a> 
+		<a href="protected/contacts.jsp" class="button back">Zurück</a> 
 		<span id="searchContact">Suchergebnisse</span>
 </div>
 <body>
 
 <%
 	int count=0;
-	List<Contact> list = (List<Contact>)session.getAttribute("nameList");
+	List<Contact> list = (List<Contact>)request.getAttribute("FIND");
 	for(Contact contact : list) {
-		contact.editContact(contact, out);
-		contact.deleteContact(contact, out);
+		contact.showContact(contact,out);
+		//contact.editContact(contact, out);
+		//contact.deleteContact(contact, out);
 		count++;
 	}
 	 out.println("<p>Ihre Sucheingabe lieferte " + count + " Ergebniss(e).</p>");

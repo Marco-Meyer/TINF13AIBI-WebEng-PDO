@@ -52,7 +52,7 @@ public class SearchContactServlet extends HttpServlet {
 		String telephone;
 		String mobilephone;
 		
-		List<Contact> nameList = new ArrayList<>();
+		List<Contact> searchList = new ArrayList<>();
 
 		Connection connection = DBConnectionManager.getDBConnection();
 		
@@ -61,6 +61,7 @@ public class SearchContactServlet extends HttpServlet {
 		try {
 			statement = connection.createStatement();
 			String query = "SELECT * FROM contact WHERE UserID='"+ request.getUserPrincipal().getName() + "' AND prename like '%"+ searchKey + "%' OR lastname like '%"+ searchKey + "%';";
+			System.out.println(query);
 			resultSet = statement.executeQuery(query);
 			while(resultSet.next()){
 				userId = resultSet.getString("UserID");
@@ -70,11 +71,12 @@ public class SearchContactServlet extends HttpServlet {
 				telephone = resultSet.getString("telephone");
 				mobilephone = resultSet.getString("mobilephone");
 				Contact contact = new Contact(userId, preName,lastName,mail,telephone,mobilephone);
-				nameList.add(contact);
+				searchList.add(contact);
 			}
 
-			request.getSession().setAttribute("nameList", nameList);
+			request.setAttribute("FIND", searchList);
 			request.getRequestDispatcher("protected/contactsResults.jsp").forward(request, response);
+			//response.sendRedirect("protected/contactsResults.jsp");
 			
 			
 		} catch (SQLException e) {

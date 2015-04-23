@@ -9,7 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+
+
 import pdo.contacts.Contact;
+import pdo.notes.Note;
+import pdo.notes.NoteList;
 import pdo.settings.DisplayType;
 import pdo.settings.Feature;
 import pdo.settings.PictureQuality;
@@ -57,8 +61,6 @@ public class DBConnectionManager {
 		connection.prepareStatement(featuresQuery).executeUpdate();	
 	}
     
-    
-    
     public static Settings getSettingsForUser(String userID, Connection connection) throws SQLException {
     	
     	Settings settings = new Settings();
@@ -80,8 +82,40 @@ public class DBConnectionManager {
     	}
     	return settings;
     }
-	
     
+    public static NoteList getNoteListForUser(String userId) throws SQLException{
+    	NoteList list = new NoteList();
+    	Connection connection = getDBConnection();
+    	String notesQuery = "SELECT * from notes WHERE UserID = '" + userId + "'";
+    	ResultSet results = connection.prepareStatement(notesQuery).executeQuery();
+    	while(results.next()) {
+    		list.createItem(results.getLong("NoteId"), results.getString("Text"));
+    	}
+    	return list;
+    }
+    
+    public static void saveNoteListForUser(NoteList list, String userId) throws SQLException{
+    	Connection connection = getDBConnection();
+    	    	
+		for(Note note : list.getList()) {
+			saveNoteEntry(note, userId, connection);
+		}
+    }
+
+    public static void deleteNoteEntry(Long noteId, String userId) throws SQLException {
+    	Connection connection = getDBConnection();
+    	
+    	String noteQuery = "DELETE FROM notes " 
+				+ "WHERE NoteID = '" + noteId + "' AND UserID = '" + userId + "'";
+    	
+    	connection.prepareStatement(noteQuery).executeUpdate();
+    }
+    
+    private static void saveNoteEntry(Note note, String userID, Connection connection) throws SQLException {
+    	String noteQuery = "INSERT INTO notes (NoteID, UserID, Text) " 
+				+ "VALUES ('" + note.getId() + "', '" + userID + "', '" + note.getText() + "') ON DUPLICATE KEY UPDATE UserID=VALUES(UserID), Text=VALUES(Text)"; 
+		connection.prepareStatement(noteQuery).executeUpdate();
+    }
     
     public static Connection getDBConnection() {
 		Connection connection = null;
@@ -96,25 +130,25 @@ public class DBConnectionManager {
 		}	 
 		return connection;
 	}
-    
-    public static List<Contact> showContactsLetterForUser(String userID, String letter, Connection connection) throws SQLException {
-    	
-    	Statement statement=null;
+static public List<Contact> selectContactsForUserWithBeginningLetter(String UserId, String letter){
+		
+//		Connection connection=null;
+		Statement statement=null;
 		ResultSet resultSet=null;
-//		String userID;
+		String userID;
 		String preName;
 		String lastName;
 		String mail;
 		String telephone;
 		String mobilephone;
 		
-		List<Contact> nameList = new ArrayList<>();
+		List<Contact> contactList = new ArrayList<>();
 		
-//		Connection connection = DBConnectionManager.getDBConnection();
+		Connection connection = DBConnectionManager.getDBConnection();
 		
 		try {
 			statement = connection.createStatement();
-			String query = "SELECT * FROM contact WHERE '"+ userID + "' AND prename like '"+ letter + "%';";
+			String query = "SELECT * FROM contact WHERE UserID='"+ UserId + "' AND prename like '"+ letter + "%';";
 			resultSet = statement.executeQuery(query);
 			while(resultSet.next()){
 				userID = resultSet.getString("userID");
@@ -124,7 +158,7 @@ public class DBConnectionManager {
 				telephone = resultSet.getString("telephone");
 				mobilephone = resultSet.getString("mobilephone");
 				Contact contact = new Contact(userID, preName,lastName,mail,telephone,mobilephone);
-				nameList.add(contact);
+				contactList.add(contact);
 			}	
 			
 		} catch (SQLException e) {
@@ -157,7 +191,13 @@ public class DBConnectionManager {
 			}         
 			connection=null;
 		}
-		return nameList;
-    }
+		return contactList;
+	}
+    
+    public static void saveContactForUser(){}
+    
+    public static void modifyContactForUser(){}
+    
+    public static void deleteContactForUser(){}
     
 }

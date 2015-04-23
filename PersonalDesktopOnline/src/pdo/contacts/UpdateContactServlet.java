@@ -60,12 +60,13 @@ public class UpdateContactServlet extends HttpServlet {
 			        PreparedStatement ps = null;
 			        try {
 			        	String query = 
-	        			"UPDATE contact SET prename='" + prename + "', lastname='" + lastName + "', mail='" + mail + "', telephone='" + telephone + "', mobilephone='" + mobilephone + "' WHERE userID='" + userID + "'prename='" + oldPrename + "' AND lastname='" + oldLastName + "' AND mail='" + oldMail + "' AND telephone='" + oldTelephone + "' AND mobilephone='" + oldMobilephone + "'" ;
+	        			"UPDATE contact SET prename='" + prename + "', lastname='" + lastName + "', mail='" + mail + "', telephone='" + telephone + "', mobilephone='" + mobilephone + "' WHERE userID='" + userID + "' AND prename='" + oldPrename + "' AND lastname='" + oldLastName + "' AND mail='" + oldMail + "' AND telephone='" + oldTelephone + "' AND mobilephone='" + oldMobilephone + "'" ;
 			            ps = connection.prepareStatement(query);
 			            ps.execute();
 
 			            System.out.println("Updating DB successful.");	
-			            request.getRequestDispatcher("protected/contacts.jsp").forward(request, response);
+			            //request.getRequestDispatcher("protected/contacts.jsp").forward(request, response);
+			            response.sendRedirect("protected/contacts.jsp");
 
 			        } catch (SQLException e) {
 			            e.printStackTrace();

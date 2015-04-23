@@ -9,38 +9,36 @@
 </head>
 <body>
 <div id="form-header">
-		<a href="contacts.jsp" class="button delete">Abbrechen</a> 
+		<a href="protected/contacts.jsp" class="button delete">Abbrechen</a> 
 		<span id="newContact">Kontakt bearbeiten</span>
     </div>
 <body>
 <form method="POST" action="UpdateContactServlet"> 
 	<div id="form">	 	
-	 		 	
-	 	
 	 	<div>
 			<label for="prename">Vorname: </label>
-		 	<input type="text" name="prename" value="<%= (String) session.getAttribute("PRE")%>">
-		 	<input type=hidden name=pre value="<%= (String) session.getAttribute("PRE")%>">
+		 	<input type="text" name="prename" value="<%= (String) request.getAttribute("PRE")%>">
+		 	<input type=hidden name=pre value="<%= (String) request.getAttribute("PRE")%>">
 		</div> 
 		<div>
 			<label for="lastName">Nachname: </label>
-		 	<input type="text" name="lastName" value="<%= session.getAttribute("LAST")%>"> 
-		 	<input type=hidden name=last value="<%=(String) session.getAttribute("LAST")%>">
+		 	<input type="text" name="lastName" value="<%= request.getAttribute("LAST")%>"> 
+		 	<input type=hidden name=last value="<%=(String) request.getAttribute("LAST")%>">
 		</div> 
 		<div>
 			<label for="mail">E-Mail: </label>
-		 	<input type="text" name="mail" value="<%=(String) session.getAttribute("EMAIL")%>">
-		 	<input type=hidden name=email value="<%=(String) session.getAttribute("EMAIL")%>"> 
+		 	<input type="text" name="mail" value="<%=(String) request.getAttribute("EMAIL")%>">
+		 	<input type=hidden name=email value="<%=(String) request.getAttribute("EMAIL")%>"> 
 		</div> 
 		<div>
 			<label for="telephone">Telefon: </label>
-		 	<input type="text" name="telephone" value="<%=(String) session.getAttribute("PHONE")%>">
-		 	<input type=hidden name=phone value="<%=(String) session.getAttribute("PHONE")%>"> 
+		 	<input type="text" name="telephone" value="<%=(String) request.getAttribute("PHONE")%>">
+		 	<input type=hidden name=phone value="<%=(String) request.getAttribute("PHONE")%>"> 
 		</div> 
 		<div>
 			<label for="mobilephone">Handy: </label>
-		 	<input type="text" name="mobilephone" value="<%=(String) session.getAttribute("MPHONE")%>">
-		 	<input type=hidden name=mphone value="<%=(String) session.getAttribute("MPHONE")%>"> 
+		 	<input type="text" name="mobilephone" value="<%=(String) request.getAttribute("MPHONE")%>">
+		 	<input type=hidden name=mphone value="<%=(String) request.getAttribute("MPHONE")%>"> 
 		</div>
 		<div>
 			<input type="submit" name="submit" value="Ändern"/> 
