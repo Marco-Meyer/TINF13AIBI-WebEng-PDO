@@ -17,6 +17,7 @@
 		<link rel="stylesheet" type="text/css" href="../styles/style.css"/>
 	</head>
 	<body>
+		
 		<div id="options">
 			<a href="settings.jsp">
 				<img class="option_icon" src="../images/gear.png" alt="Options">
@@ -68,6 +69,11 @@
 			<div id="kaffee">
 				<img class="kaffee_img" src="../images/kaffee.png" alt="Kaffee">
 			</div>
+		</div>
+		<div id="logout"> 
+			<a href="logout.jsp" > 
+				<img class="logout_icon" src="../images/logout.png" alt="logout" />
+			</a>
 		</div>
 	</body>
 </html>
