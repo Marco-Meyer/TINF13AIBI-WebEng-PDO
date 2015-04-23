@@ -8,7 +8,6 @@
 		<script src="../scripts/apprise-v2.js"></script>
 		<script src="../scripts/LogInScript.js"></script>
 		<link rel="stylesheet" href="../styles/LogInStyle.css" />
-		
 	</head>
 	<body>
 		<div id="logmsk" style="display: block;">
