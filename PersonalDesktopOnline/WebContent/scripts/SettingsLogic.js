@@ -1,5 +1,4 @@
 
-var hostUrl = "http://localhost:8000/PDO/SettingsServlet"
 var settings;
 
 function setupPage()
@@ -14,7 +13,7 @@ function saveChanges() {
 		settings.update();
 		var request = new XMLHttpRequest();
 		request.onreadystatechange = function () { if(request.readyState == 4) {window.location.replace("home.jsp") } }		
-		request.open("POST", hostUrl, true);	
+		request.open("POST", "../SettingsServlet", true);	
 		request.setRequestHeader("Content-type", "application/json");
 		request.send(JSON.stringify(settings));
 	}

@@ -5,6 +5,7 @@
 	  	<title>PDO - Sign Up/Login</title>
 		<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css" />
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="../scripts/apprise-v2.js"></script>
 		<script src="../scripts/LogInScript.js"></script>
 		<link rel="stylesheet" href="../styles/LogInStyle.css" />
 	</head>

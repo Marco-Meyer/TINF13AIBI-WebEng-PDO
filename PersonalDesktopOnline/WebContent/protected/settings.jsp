@@ -39,11 +39,11 @@
 				<h3>Ansicht</h3>
 				<ul>
 					<li>
-						<input type="radio" onclick="setDisplayType('Desktop')" name="view" value="Desktop" <%= (settings.getDisplayType() == DisplayType.Desktop ? "checked=\"checked\"" : "" ) %> ></input>
+						<input class="redondo" type="radio" onclick="setDisplayType('Desktop')" name="view" value="Desktop" <%= (settings.getDisplayType() == DisplayType.Desktop ? "checked=\"checked\"" : "" ) %> ></input>
 						<label>Schreibtisch</label>
 					</li>
 					<li>
-						<input type="radio" onclick="setDisplayType('Galery')" name="view" value="Galery" <%= (settings.getDisplayType() == DisplayType.Galery ? "checked=\"checked\"" : "" ) %>></input>
+						<input class="redondo" type="radio" onclick="setDisplayType('Galery')" name="view" value="Galery" <%= (settings.getDisplayType() == DisplayType.Galery ? "checked=\"checked\"" : "" ) %>></input>
 						<label>Galerie</label>
 					</li>
 				</ul>			
@@ -52,15 +52,15 @@
 				<h3>Bildqualität</h3>
 				<ul>
 					<li>
-						<input type="radio" onclick="setPictureQuality('High')" name="quality" value="High" <%= (settings.getPictureQuality() == PictureQuality.High ? "checked=\"checked\"" : "" ) %>></input>
+						<input class="redondo" type="radio" onclick="setPictureQuality('High')" name="quality" value="High" <%= (settings.getPictureQuality() == PictureQuality.High ? "checked=\"checked\"" : "" ) %>></input>
 						<label>Hoch</label>
 					</li>
 					<li>
-						<input type="radio" onclick="setPictureQuality('Medium')" name="quality" value="Medium" <%= (settings.getPictureQuality() == PictureQuality.Medium ? "checked=\"checked\"" : "" ) %>></input>
+						<input class="redondo" type="radio" onclick="setPictureQuality('Medium')" name="quality" value="Medium" <%= (settings.getPictureQuality() == PictureQuality.Medium ? "checked=\"checked\"" : "" ) %>></input>
 						<label>Mittel</label>
 					</li>
 					<li>
-						<input type="radio" onclick="setPictureQuality('Low')" name="quality" value="Low" <%= (settings.getPictureQuality() == PictureQuality.Low ? "checked=\"checked\"" : "" ) %>></input>
+						<input class="redondo" type="radio" onclick="setPictureQuality('Low')" name="quality" value="Low" <%= (settings.getPictureQuality() == PictureQuality.Low ? "checked=\"checked\"" : "" ) %>></input>
 						<label>Niedrig</label>
 					</li>
 				</ul>
@@ -77,7 +77,7 @@
 							+ "<td><input  type='checkbox'" + (feature.isEnabled() ? "checked = 'checked'" : "") + "onclick=toggleFeature('" + feature.getName() + "')/>"
 							+ "<label class='feature-name'>" +feature.getName() + "</label></td>"
 							+ "<td><a href='" + feature.getUrl() + "' id='url-label-" + feature.getName() + "' class='url-label'>" + feature.getUrl() + "</a></td>"
-							+ "<td><input type='button' value='Url bearbeiten' class='editurl' onclick=\"createEditBox('Neue Url: ', 'url-label-" + feature.getName() + "')\" /></td>"
+							+ "<td><input type='button' value='Url bearbeiten' class='button-general' onclick=\"createEditBox('Neue Url: ', 'url-label-" + feature.getName() + "')\" /></td>"
 							+ "</tr>");
 						}
 					%>
@@ -87,28 +87,24 @@
 		<div class="settings-category">
 			<div id="user-info-container" class="settings-container">
 				<h3>Benutzerinformationen</h3>
-				<table>
-					<tr><td><p>Benutzer: </p></td><td><p id="user-name"><%= settings.getUserInfo().getName() %></p></td></tr>
-					<!-- <tr><td><p>E-Mail Adresse:</p></td><td><p id="user-mail" ><%= settings.getUserInfo().geteMail() %></p></td></tr> -->
-					
-				</table>	
+				<div id="user-name"><span>Benutzer: </span><%= settings.getUserInfo().getName() %></div>
 			</div>
 			<div id="change-mail-container" class="settings-container">
 				<h3>E-Mail Adresse ändern</h3>
 				<div>
-					<p><label>Neue Adresse: </label><input type="text" style="margin-left: 149px;"></input></p>
-					<p><label>Neue Adresse bestätigen: </label><input type="text" style="margin-left: 59px;"></input></p>
-					<button >E-Mail Adresse ändern</button>
+					<div><label>Neue Adresse</label></div><div><input type="text""></input></div>
+					<div><label>Neue Adresse bestätigen</label></div><div><input type="text"></input></div>
+					<button class="button-general" style="margin-top:5pt;">E-Mail Adresse ändern</button>
 				</div>	
 			</div>
 			
 			<div id="password-container" class="settings-container">
 				<h3>Passwort ändern</h3>
 				<div>
-						<p><label>Altes Passwort: </label><input type="password" style="margin-left: 144px;"></input></p>
-						<p><label>Neues Passwort: </label><input type="password" style="margin-left: 131px;;"></input></p>
-						<p><label>Neues Passwort bestätigen: </label><input type="password" style="margin-left: 41px;"></input></p>
-						<button>Passwort ändern</button>
+						<div><label>Altes Passwort</label></div><div><input type="password"></input></div>
+						<div><label>Neues Passwort</label></div><div><input type="password"></input></div>
+						<div><label>Neues Passwort bestätigen</label></div><div><input type="password"></input></div>
+						<button class="button-general" style="margin-top:5pt;">Passwort ändern</button>
 				</div>
 			</div>
 		</div>

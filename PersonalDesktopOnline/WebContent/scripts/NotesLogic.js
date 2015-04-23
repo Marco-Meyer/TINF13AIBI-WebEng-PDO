@@ -1,5 +1,5 @@
-var addUrl = "http://localhost:8000/PDO/NotesServlet"
-var deleteUrl = "http://localhost:8000/PDO/DeleteNoteServlet"
+var addUrl = "../NotesServlet"
+var deleteUrl = "../DeleteNoteServlet"
 
 
 function createEditBox(text, id) {
@@ -7,9 +7,7 @@ function createEditBox(text, id) {
 			buttons: {
 				confirm: {
 					text: 'Ok',
-					//className: 'blue',
 					action: function(e) {
-						$('#note-' + id ).html(e.input);
 						changeNote(id, e.input)
 						Apprise('close');
 					}
@@ -17,7 +15,6 @@ function createEditBox(text, id) {
 			},
 			input: true
 		};
-	//Apprise.$_Input = $("<input type='text' value='" + document.getElementById("note-" + id).textcontent +"'>");
 	Apprise(text, options);
 }
 
@@ -27,9 +24,10 @@ function changeNote(id, text) {
 		var request = new XMLHttpRequest();
 		var idValue = id;
 		var textValue = text;
-		if (textValue == null) {
+		if (!textValue || textValue.length >= 256 ) {
 			textValue = "";
 		} 
+		$('#note-' + id ).html(textValue);
 		var parameters="id="+idValue+"&text="+textValue;
 		console.log("the post-parameters are: " + parameters);
 		

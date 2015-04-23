@@ -9,9 +9,7 @@ html, body
 	font-size: 14pt;
 	font-family: Arial;
 	background-color: white;	
-	font-family: "Segoe UI", "Meiryo UI", "Meiryo", "Microsoft YaHei UI", "Microsoft YaHei", "Microsoft JhengHei UI", "Microsoft JhengHei", 
-		  "Malgun Gothic", Ebrima, "Khmer UI", Latha, "Nirmala UI", Tunga, "Lao UI", Lao, Leelawadee, Verdana, Arial, Helvetica, sans-serif;;
-}
+    font-family: "Segoe UI", "Meiryo UI", "Meiryo", "Microsoft YaHei UI", "Microsoft YaHei", "Microsoft JhengHei UI", "Microsoft JhengHei", "Malgun Gothic", Ebrima, "Khmer UI", Latha, "Nirmala UI", Tunga, "Lao UI", Lao, Leelawadee, Verdana, Arial, Helvetica, sans-serif;}
 
 h3
 {
@@ -37,14 +35,16 @@ table
 	width: 100%;
 	border-bottom: 1px solid #A5A5A5;
 	display: table;
+	background: whitesmoke;
 }
 
 #settings
 {
-	font-size: 14pt;
+	font-size: 30pt;
 	vertical-align: middle;
 	display: table-cell;
-	padding-left: 1%;
+	padding: 10pt;
+	padding-left: 3%;
 }
 
 #settings-tabbar-container
@@ -53,6 +53,7 @@ table
 	height: 96%;
 	float: left;
 	border-right: 1px solid #A5A5A5;
+	background: whitesmoke;
 }
 
 #settings-categories-container
@@ -68,7 +69,7 @@ table
 	height: 70px;
 	display: table;
 	cursor: pointer;
-	color: #717171;
+	color: black;
 	font-size: 16pt;
 	border-bottom: 1px solid #D3D3D3;
 	background: whitesmoke;
@@ -107,12 +108,12 @@ table
 
 #features-container
 {
-	margin-top: 75px;
+	margin-top: 40px;
 	width: 950px;
 }
 #quality-container
 {
-	margin-top: 75px;
+	margin-top: 40px;
 }
 
 .features-table td
@@ -123,11 +124,153 @@ table
 #user-info-container {}
 #change-mail-container
 {
-	margin-top: 75px;
+	margin-top: 40px;
 }
 #password-container
 {
-	margin-top: 75px;
+	margin-top: 40px;
+}
+
+input {
+  margin: 0;
+  padding: 0;
+  color: #000;
+  border: 0 none;
+  outline: none;
+  background-color: transparent;
+  vertical-align: middle;
+  font-family: "Segoe UI", "Meiryo UI", "Meiryo", "Microsoft YaHei UI", "Microsoft YaHei", "Microsoft JhengHei UI", "Microsoft JhengHei", "Malgun Gothic", Ebrima, "Khmer UI", Latha, "Nirmala UI", Tunga, "Lao UI", Lao, Leelawadee, Verdana, Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 28px;
+}
+
+input:not([type]), input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="email"], input[type="month"], input[type="number"], input[type="password"], input[type="tel"], input[type="text"], input[type="time"], input[type="url"], input[type="week"], select {
+  padding: 0 0.5em;
+  width: 16em;
+  border: 2px solid #ccc;
+  vertical-align: baseline;
+}
+
+input[type=checkbox] {
+  position: relative;
+  width: 44px;
+  height: 16px;
+  margin: 5px 8px;
+  outline: 2px #888 solid;
+  border: 1px #eee solid;
+  background: #aaa;
+  vertical-align: top;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+
+input[type=radio].redondo:checked {
+  background-image: -webkit-radial-gradient(center, circle contain, #000 0%, #000 60%, transparent 70%);
+}
+
+input[type=radio].redondo:hover{
+  background-image: -webkit-radial-gradient(center, circle contain, #999 0%, #999 60%, transparent 70%);
+}
+
+input[type=radio].redondo {
+  margin-right: 5pt;
+  -webkit-appearance: none;
+  position: relative;
+  width: 1.6em;
+  height: 1.6em;
+  padding: 0;
+  cursor: pointer;
+  border: 2px solid #999;
+  border-radius: 50%;
+}
+
+input[type="radio" i] {
+  margin: 3px 3px 0px 5px;
+}
+input[type="radio" i] {
+  -webkit-appearance: radio;
+  box-sizing: border-box;
+}
+input[type="radio" i], input[type="checkbox" i] {
+  margin: 3px 0.5ex;
+  padding: initial;
+  background-color: initial;
+  border: initial;
+}
+
+input[type=checkbox]:checked::before {
+  content: "";
+  position: absolute;
+  left: auto;
+  right: -3px;
+  text-align: center;
+  font-size: 1.2em;
+  line-height: 1em;
+}
+
+input[type=checkbox]:hover::before {
+    left: 15px;
+}
+
+input[type=checkbox]:checked:hover::before {
+    /*right: 1px;*/
+}
+
+input[type=checkbox]::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: auto;
+  width: 13px;
+  height: 20px;
+  background: #111;
+}
+
+input[type=button] {
+  margin: 0;
+  padding: 0 0.5em;
+  border: 0 none;
+  line-height: 32px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #000;
+  background-color: #ccc;
+  cursor: pointer;
+}
+
+label{
+	vertical-align: top;
+}
+
+input[type=checkbox]:checked {
+  background-color: #008287;
+}
+input[type=checkbox]:checked {
+  background: #006699;
+}
+@media (min-width: 1070px)
+input[type=checkbox] {
+  margin-right: 38%;
+}
+input[type=checkbox] {
+  float: left;
+  margin-right: 15pt;
+}
+
+.button-general {
+  margin: 0;
+  padding: 0 0.5em;
+  border: 0 none;
+  line-height: 32px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #000;
+  background-color: #ccc;
+  cursor: pointer;
+}
+.button-general:hover {
+	background-color: lightgrey;
 }
 
 

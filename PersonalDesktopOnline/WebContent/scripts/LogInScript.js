@@ -44,7 +44,7 @@ $(function () {
     });
     $("#pass").keyup(function () {
         var len = $('#pass').val().length;
-        if (len > 10 || len == 0) {
+        if (len > 15 || len == 0) {
             $('#pass').css('background', 'rgb(255, 214, 190)');
             blsp();
             if (len != 0) {
@@ -69,15 +69,29 @@ $(function () {
         }
     }
     $('#signupb').click(function () {
-        if (flg.name == 0 && flg.pass == 0) {
+        if (flg.name == 0 && flg.pass == 0 && flg.logt == 1) {
             $('#sumsk').fadeIn();
             $('#name, #pass, #logint, #nameal, #passal, #signupb').css('opacity', '0.2');
-            $('#close').fadeIn()
-            xmlhttp.open('POST','<%=request.getContextPath()%>/pdo/LogInServlet',true);
+            $('#close').fadeIn();
+           /* xmlhttp.open('POST','<%=request.getContextPath()%>/pdo/LogInServlet',true);
             xmlhttp.setRequestHeader('UserID','#name');
             xmlhttp.setRequestHeader('UserPW','#pass');
-            xmlhttp.send();
+            xmlhttp.send(); */
+        } else {
+    		var request = new XMLHttpRequest();
+    		request.onreadystatechange = function () {
+    				if(request.readyState == 4 && request.status == 200) {
+    					switchMode();
+//						Apprise("Registrierung erfolgreich!", {input: true});
+    				}}		
+    		request.open("POST", "../RegisterServlet", true);	
+    		request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    		var name = document.getElementsByName("j_username")[0];
+    		var pass = document.getElementsByName("j_password")[0];
+    		request.send("UserID=" + name.value + "&UserPW=" + pass.value);
+        	return false;
         }
+        
     });
     $('#close').click(function () {
         init();
