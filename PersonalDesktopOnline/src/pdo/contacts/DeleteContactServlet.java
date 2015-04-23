@@ -43,6 +43,7 @@ public class DeleteContactServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		Connection connection = DBConnectionManager.getDBConnection();
+		String userID = request.getUserPrincipal().getName();
 		String prename = request.getParameter("pre");
         String lastName = request.getParameter("last");
         String mail = request.getParameter("email");
@@ -51,12 +52,12 @@ public class DeleteContactServlet extends HttpServlet {
                
         PreparedStatement ps = null;
         try {
-        	String query = "DELETE FROM contact WHERE prename='" + prename + "' AND lastname='" + lastName + "' AND mail='" + mail + "' AND telephone='" + telephone + "' AND mobilephone='" + mobilephone + "'";
+        	String query = "DELETE FROM contact WHERE UserID='" + userID + "' AND prename='" + prename + "' AND lastname='" + lastName + "' AND mail='" + mail + "' AND telephone='" + telephone + "' AND mobilephone='" + mobilephone + "'";
             ps = connection.prepareStatement(query);
             ps.execute();
 
             System.out.println("Deleting from DB successful.");	
-            request.getRequestDispatcher("contacts.jsp").forward(request, response);
+            request.getRequestDispatcher("protected/contacts.jsp").forward(request, response);
             
         } catch (SQLException e) {
             e.printStackTrace();

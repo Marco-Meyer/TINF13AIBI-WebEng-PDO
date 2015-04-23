@@ -45,6 +45,7 @@ public class SearchContactServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Statement statement=null;
 		ResultSet resultSet=null;
+		String userId;
 		String preName;
 		String lastName;
 		String mail;
@@ -59,20 +60,21 @@ public class SearchContactServlet extends HttpServlet {
 		
 		try {
 			statement = connection.createStatement();
-			String query = "SELECT * FROM contact WHERE prename like '%"+ searchKey + "%' OR lastname like '%"+ searchKey + "%';";
+			String query = "SELECT * FROM contact WHERE UserID='"+ request.getUserPrincipal().getName() + "' AND prename like '%"+ searchKey + "%' OR lastname like '%"+ searchKey + "%';";
 			resultSet = statement.executeQuery(query);
 			while(resultSet.next()){
+				userId = resultSet.getString("UserID");
 				preName = resultSet.getString("prename");
 				lastName = resultSet.getString("lastname");
 				mail = resultSet.getString("mail");
 				telephone = resultSet.getString("telephone");
 				mobilephone = resultSet.getString("mobilephone");
-				Contact contact = new Contact(preName,lastName,mail,telephone,mobilephone);
+				Contact contact = new Contact(userId, preName,lastName,mail,telephone,mobilephone);
 				nameList.add(contact);
 			}
 
-			request.setAttribute("nameList", nameList);
-			request.getRequestDispatcher("contactsResults.jsp").forward(request, response);
+			request.getSession().setAttribute("nameList", nameList);
+			request.getRequestDispatcher("protected/contactsResults.jsp").forward(request, response);
 			
 			
 		} catch (SQLException e) {

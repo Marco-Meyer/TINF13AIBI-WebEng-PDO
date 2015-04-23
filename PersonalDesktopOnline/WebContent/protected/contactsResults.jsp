@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<link rel="stylesheet" type="text/css" href="styles/SearchContact.css">
+	<link rel="stylesheet" type="text/css" href="../styles/SearchContact.css">
 <title>PDO - Kontakte - Suchergebnisse</title>
 </head>
 <div id="search-header">
@@ -17,7 +17,7 @@
 
 <%
 	int count=0;
-	List<Contact> list = (List<Contact>)request.getAttribute("nameList");
+	List<Contact> list = (List<Contact>)session.getAttribute("nameList");
 	for(Contact contact : list) {
 		contact.editContact(contact, out);
 		contact.deleteContact(contact, out);

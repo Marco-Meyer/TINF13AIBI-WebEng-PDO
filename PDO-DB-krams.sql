@@ -11,12 +11,13 @@ create table pdodb.roles (
 );
 
  CREATE TABLE `pdodb`.`contact` (
+  `UserID` VARCHAR(32) NOT NULL,
   `prename` VARCHAR(32) NOT NULL,
   `lastname` VARCHAR(32) NOT NULL,
   `mail` VARCHAR(32) NOT NULL,
   `telephone` VARCHAR(32) NOT NULL,
   `mobilephone` VARCHAR(32) NOT NULL,
-  PRIMARY KEY (`prename`, `lastname`)); 
+  PRIMARY KEY (`UserID`,`prename`, `lastname`)); 
   
   CREATE TABLE `pdodb`.`usersettings` (
   `UserID` VARCHAR(32) NOT NULL,

@@ -4,8 +4,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
+import pdo.contacts.Contact;
 import pdo.settings.DisplayType;
 import pdo.settings.Feature;
 import pdo.settings.PictureQuality;
@@ -92,4 +96,68 @@ public class DBConnectionManager {
 		}	 
 		return connection;
 	}
+    
+    public static List<Contact> showContactsLetterForUser(String userID, String letter, Connection connection) throws SQLException {
+    	
+    	Statement statement=null;
+		ResultSet resultSet=null;
+//		String userID;
+		String preName;
+		String lastName;
+		String mail;
+		String telephone;
+		String mobilephone;
+		
+		List<Contact> nameList = new ArrayList<>();
+		
+//		Connection connection = DBConnectionManager.getDBConnection();
+		
+		try {
+			statement = connection.createStatement();
+			String query = "SELECT * FROM contact WHERE '"+ userID + "' AND prename like '"+ letter + "%';";
+			resultSet = statement.executeQuery(query);
+			while(resultSet.next()){
+				userID = resultSet.getString("userID");
+				preName = resultSet.getString("prename");
+				lastName = resultSet.getString("lastname");
+				mail = resultSet.getString("mail");
+				telephone = resultSet.getString("telephone");
+				mobilephone = resultSet.getString("mobilephone");
+				Contact contact = new Contact(userID, preName,lastName,mail,telephone,mobilephone);
+				nameList.add(contact);
+			}	
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			if (resultSet!=null) { 
+				try {
+					resultSet.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				resultSet=null; 
+			}    
+			if (statement!=null) { 
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				statement=null; 
+			}
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}         
+			connection=null;
+		}
+		return nameList;
+    }
+    
 }

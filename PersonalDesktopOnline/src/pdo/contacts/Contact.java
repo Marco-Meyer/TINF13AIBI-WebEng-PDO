@@ -17,6 +17,7 @@ public class Contact implements Serializable{
 	
 	private static final long serialVersionUID = 6297385302078200511L;
     
+	public String userId;
     public String prename;
     public String lastName;
     private int id;
@@ -25,6 +26,7 @@ public class Contact implements Serializable{
     public String mobilephone;
     
     public Contact(){
+    	this.userId="";
     	this.prename="";
         this.lastName="";
         this.mail="";
@@ -32,8 +34,9 @@ public class Contact implements Serializable{
         this.mobilephone="";
     }
      
-    public Contact(String pre, String last, String mail,String phone,String mphone){
-        this.prename=pre;
+    public Contact(String user, String pre, String last, String mail,String phone,String mphone){
+        this.userId=user;
+    	this.prename=pre;
         this.lastName=last;
         this.mail=mail;
         this.telephone=phone;
@@ -100,67 +103,69 @@ public class Contact implements Serializable{
         return name + mail + telephone + mobilephone;
     }
     
-static public List<Contact> showContacts(String letter){
-		
-//		Connection connection=null;
-		Statement statement=null;
-		ResultSet resultSet=null;
-		String preName;
-		String lastName;
-		String mail;
-		String telephone;
-		String mobilephone;
-		
-		List<Contact> nameList = new ArrayList<>();
-		
-		Connection connection = DBConnectionManager.getDBConnection();
-		
-		try {
-			statement = connection.createStatement();
-			String query = "SELECT * FROM contact WHERE prename like '"+ letter + "%';";
-			resultSet = statement.executeQuery(query);
-			while(resultSet.next()){
-				preName = resultSet.getString("prename");
-				lastName = resultSet.getString("lastname");
-				mail = resultSet.getString("mail");
-				telephone = resultSet.getString("telephone");
-				mobilephone = resultSet.getString("mobilephone");
-				Contact contact = new Contact(preName,lastName,mail,telephone,mobilephone);
-				nameList.add(contact);
-			}	
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally{
-			if (resultSet!=null) { 
-				try {
-					resultSet.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				resultSet=null; 
-			}    
-			if (statement!=null) { 
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				statement=null; 
-			}
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}         
-			connection=null;
-		}
-		return nameList;
-	}
+//static public List<Contact> showContacts(String UserId, String letter){
+//		
+////		Connection connection=null;
+//		Statement statement=null;
+//		ResultSet resultSet=null;
+//		String userID;
+//		String preName;
+//		String lastName;
+//		String mail;
+//		String telephone;
+//		String mobilephone;
+//		
+//		List<Contact> nameList = new ArrayList<>();
+//		
+//		Connection connection = DBConnectionManager.getDBConnection();
+//		
+//		try {
+//			statement = connection.createStatement();
+//			String query = "SELECT * FROM contact WHERE '"+ UserId + "' AND prename like '"+ letter + "%';";
+//			resultSet = statement.executeQuery(query);
+//			while(resultSet.next()){
+//				userID = resultSet.getString("userID");
+//				preName = resultSet.getString("prename");
+//				lastName = resultSet.getString("lastname");
+//				mail = resultSet.getString("mail");
+//				telephone = resultSet.getString("telephone");
+//				mobilephone = resultSet.getString("mobilephone");
+//				Contact contact = new Contact(userID, preName,lastName,mail,telephone,mobilephone);
+//				nameList.add(contact);
+//			}	
+//			
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}finally{
+//			if (resultSet!=null) { 
+//				try {
+//					resultSet.close();
+//				} catch (SQLException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//				resultSet=null; 
+//			}    
+//			if (statement!=null) { 
+//				try {
+//					statement.close();
+//				} catch (SQLException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//				statement=null; 
+//			}
+//			try {
+//				connection.close();
+//			} catch (SQLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}         
+//			connection=null;
+//		}
+//		return nameList;
+//	}
 
 	static public JspWriter editContact(Contact contact, JspWriter out){
 		try {

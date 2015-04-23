@@ -35,19 +35,21 @@ public class EditContactServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String userID = request.getUserPrincipal().getName();
 		String pre = request.getParameter("pre");
 		String last = request.getParameter("last");
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
 		String mphone = request.getParameter("mphone");
 		
-		request.setAttribute("PRE", pre);
-		request.setAttribute("LAST", last);
-		request.setAttribute("EMAIL", email);
-		request.setAttribute("PHONE", phone);
-		request.setAttribute("MPHONE", mphone);
+		request.getSession().setAttribute("USER", userID);
+		request.getSession().setAttribute("PRE", pre);
+		request.getSession().setAttribute("LAST", last);
+		request.getSession().setAttribute("EMAIL", email);
+		request.getSession().setAttribute("PHONE", phone);
+		request.getSession().setAttribute("MPHONE", mphone);
 		
-		request.getRequestDispatcher("editContact.jsp").forward(request, response);
+		request.getRequestDispatcher("protected/editContact.jsp").forward(request, response);
 	}
 
 }
