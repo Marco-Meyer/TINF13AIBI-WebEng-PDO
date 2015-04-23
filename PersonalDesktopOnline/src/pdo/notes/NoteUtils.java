@@ -7,9 +7,9 @@ import javax.servlet.jsp.JspWriter;
 
 public class NoteUtils {
 
-	static public void printNoteList(JspWriter writer) {
+	static public void printNoteList(JspWriter writer, NoteList noteList) {
 		System.out.println("Starting print of note list");
-		List<Note> list = NoteList.getInstance().getList();
+		List<Note> list = noteList.getList();
 		Iterator<Note> it = list.iterator();
 		Note currentNote;
 		try {
@@ -18,7 +18,7 @@ public class NoteUtils {
 				writer.println("<div class='note'>");
 				writer.println("<div class='closeButton'"
 						+ "onClick='deleteNote(" + currentNote.getId() + ")'>"
-						+ "<img class='closeIcon' src='images/close-button.png' alt='Close'>"
+						+ "<img class='closeIcon' src='../images/close-button.png' alt='Close'>"
 						+ "</div>");
 				writer.println("<div class='noteText' "
 						+ "id ='note-" + currentNote.getId() + "' "

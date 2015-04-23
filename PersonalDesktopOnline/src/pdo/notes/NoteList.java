@@ -1,23 +1,20 @@
 package pdo.notes;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import pdo.utils.DBConnectionManager;
+
 public class NoteList {
-	static private NoteList instance;
 	private List<Note> list;
 	
-	private NoteList() {
+	
+	
+	public NoteList() {
 		super();
 		list = new ArrayList<Note>();
-	}
-	
-	static public NoteList getInstance() {
-		if (instance == null) {
-			instance = new NoteList();
-		}
-		return instance;
 	}
 	
 	public List<Note> getList() {
@@ -40,6 +37,10 @@ public class NoteList {
 		} else {
 			System.out.println("Deletion successfully finished");
 		}
+	}
+	
+	public void createItem(long itemId, String text) {
+		list.add(new Note(itemId, "", text));
 	}
 	
 	public void changeItem(long itemId, String name, String text) {

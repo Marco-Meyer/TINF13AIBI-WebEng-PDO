@@ -40,6 +40,17 @@ public class Note {
 		this.position = 0;
 	}
 	
+	public Note(Long id, String name, String text) {
+		super();
+		this.name = name;
+		if (id > idCounter) {
+			idCounter = id + 1;
+		}
+		this.id = id;
+		this.text = text;
+		this.position = 0;
+	}
+	
 	public void changeNote(String newName, String newText) {
 		this.name = newName;
 		this.text = newText;

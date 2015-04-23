@@ -1,4 +1,4 @@
- create table pdodb.users (
+create table pdodb.users (
   UserID         varchar(15) not null primary key,
   UserPW         varchar(15) not null,
   EMail			 varchar(25) null
@@ -24,17 +24,16 @@ create table pdodb.roles (
   `PictureQuality` VARCHAR(32) NULL,
   PRIMARY KEY (`UserID`));
 
-
 CREATE TABLE `pdodb`.`features` (
   `UserID` VARCHAR(32) NOT NULL,
   `Name` VARCHAR(32) NOT NULL,
   `Url` TEXT NULL,
   `IsEnabled` TINYINT(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`UserID`, `Name`));
-  
 
-  
-  
-
-  
+CREATE TABLE `pdodb`.`notes` (
+  `NoteID` BIGINT(32) NOT NULL,
+  `UserID` VARCHAR(32) NOT NULL,
+  `TEXT` VARCHAR(256) NULL,
+  PRIMARY KEY (`NoteID`));  
   
