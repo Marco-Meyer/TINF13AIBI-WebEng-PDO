@@ -33,11 +33,11 @@
 	<form name="addNewNoteForm" method="post" action="../NotesServlet">
 		<input type="hidden" name="id" value=-1>
 		<input type="hidden" name="text" value="">
-		<p><input type="submit" name="Submit" value="Notiz hinzufügen"></p>
+		<input type="submit" class='addNoteButton' name="Submit" value="Notiz hinzufügen">
 	</form>
 	
 	<form action="home.jsp">
-    	<input type="submit" value="Zurück">
+    	<input type="submit" class='backButton' value="Zurück">
 	</form>
 </body>
 </html>
