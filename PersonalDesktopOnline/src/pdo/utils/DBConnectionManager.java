@@ -62,15 +62,19 @@ public class DBConnectionManager {
     	Settings settings = new Settings();
     	String settingsQuery = "SELECT * from usersettings WHERE UserID = '" + userID + "'";
     	ResultSet results = connection.prepareStatement(settingsQuery).executeQuery();
-    	results.first();
-    	settings.setDisplayType(DisplayType.valueOf(results.getString("DisplayType")));
-    	settings.setPictureQuality(PictureQuality.valueOf(results.getString("PictureQuality")));
     	
-    	String featuresQuery = "SELECT * from features WHERE UserID = '" + results.getString("UserID") + "'";
-    	ResultSet features = connection.prepareStatement(featuresQuery).executeQuery();
-    	
-    	while(features.next()) {
-    		settings.getFeatures().add(new Feature(features.getString("Name"), features.getString("Url"), features.getInt("IsEnabled") != 0));
+    	if(results.first()) {
+    		settings.setDisplayType(DisplayType.valueOf(results.getString("DisplayType")));
+        	settings.setPictureQuality(PictureQuality.valueOf(results.getString("PictureQuality")));
+        	String featuresQuery = "SELECT * from features WHERE UserID = '" + results.getString("UserID") + "'";
+        	ResultSet features = connection.prepareStatement(featuresQuery).executeQuery();
+        	
+        	while(features.next()) {
+        		settings.getFeatures().add(new Feature(features.getString("Name"), features.getString("Url"), features.getInt("IsEnabled") != 0));
+        	}
+    	} else {
+    		settings = Settings.CreateDefaultSettings(userID);
+    		createNewSettings(settings, connection);
     	}
     	return settings;
     }
