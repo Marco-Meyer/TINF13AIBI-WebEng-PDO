@@ -33,7 +33,7 @@ public class Settings {
 		output.displayType = DisplayType.Desktop;
 		output.pictureQuality = PictureQuality.Medium;
 		output.features = new ArrayList<Feature>();
-		output.features.add(new Feature("Notizen", "localhost:8000/PDO/protected/notesList.jsp", true));
+		output.features.add(new Feature("Notizen", "localhost:8000/PDO/protected/NoteList.jsp", true));
 		output.features.add(new Feature("Kalender", "https://www.google.com/calendar?hl=de", true));
 		output.features.add(new Feature("Uhrzeit", "www.uhrzeit.org/atomuhr.php", true));
 		output.features.add(new Feature("Kontakte", "localhost:8000/PDO/protected/contacts.jsp", true));
