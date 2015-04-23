@@ -4,8 +4,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
+import pdo.notes.Note;
+import pdo.notes.NoteList;
 import pdo.settings.DisplayType;
 import pdo.settings.Feature;
 import pdo.settings.PictureQuality;
@@ -57,8 +61,6 @@ public class DBConnectionManager {
 		connection.prepareStatement(featuresQuery).executeUpdate();	
 	}
     
-    
-    
     public static Settings getSettingsForUser(String userID, Connection connection) throws SQLException {
     	
     	Settings settings = new Settings();
@@ -80,8 +82,40 @@ public class DBConnectionManager {
     	}
     	return settings;
     }
-	
     
+    public static NoteList getNoteListForUser(String userId) throws SQLException{
+    	NoteList list = new NoteList();
+    	Connection connection = getDBConnection();
+    	String notesQuery = "SELECT * from notes WHERE UserID = '" + userId + "'";
+    	ResultSet results = connection.prepareStatement(notesQuery).executeQuery();
+    	while(results.next()) {
+    		list.createItem(results.getLong("NoteId"), results.getString("Text"));
+    	}
+    	return list;
+    }
+    
+    public static void saveNoteListForUser(NoteList list, String userId) throws SQLException{
+    	Connection connection = getDBConnection();
+    	    	
+		for(Note note : list.getList()) {
+			saveNoteEntry(note, userId, connection);
+		}
+    }
+
+    public static void deleteNoteEntry(Long noteId, String userId) throws SQLException {
+    	Connection connection = getDBConnection();
+    	
+    	String noteQuery = "DELETE FROM notes " 
+				+ "WHERE NoteID = '" + noteId + "' AND UserID = '" + userId + "'";
+    	
+    	connection.prepareStatement(noteQuery).executeUpdate();
+    }
+    
+    private static void saveNoteEntry(Note note, String userID, Connection connection) throws SQLException {
+    	String noteQuery = "INSERT INTO notes (NoteID, UserID, Text) " 
+				+ "VALUES ('" + note.getId() + "', '" + userID + "', '" + note.getText() + "') ON DUPLICATE KEY UPDATE UserID=VALUES(UserID), Text=VALUES(Text)"; 
+		connection.prepareStatement(noteQuery).executeUpdate();
+    }
     
     public static Connection getDBConnection() {
 		Connection connection = null;

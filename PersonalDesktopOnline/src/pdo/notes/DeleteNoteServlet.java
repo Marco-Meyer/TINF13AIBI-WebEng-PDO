@@ -1,11 +1,15 @@
 package pdo.notes;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import pdo.utils.DBConnectionManager;
 
 /**
  * Servlet implementation class DeleteNoteServlet
@@ -25,7 +29,7 @@ public class DeleteNoteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("NoteList.jsp").forward(request, response);
+		response.sendRedirect("protected/NoteList.jsp");
 	}
 
 	/**
@@ -33,8 +37,15 @@ public class DeleteNoteServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		long id = Long.parseLong(request.getParameter("itemId"));
-		NoteList.getInstance().deleteItem(id);
-		request.getRequestDispatcher("NoteList.jsp").forward(request, response);
+		NoteList list = (NoteList) request.getSession().getAttribute("NOTELIST");
+		list.deleteItem(id);
+		try {
+			DBConnectionManager.deleteNoteEntry(id, request.getUserPrincipal().getName());
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		request.getSession().setAttribute("NOTELIST", list);
+		response.sendRedirect("protected/NoteList.jsp");
 	}
 
 }
