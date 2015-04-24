@@ -49,7 +49,8 @@ public class EditContactServlet extends HttpServlet {
 		request.setAttribute("PHONE", phone);
 		request.setAttribute("MPHONE", mphone);
 		
-		//request.getRequestDispatcher("protected/editContact.jsp").forward(request, response);
+		request.getRequestDispatcher("protected/editContact.jsp").forward(request, response);
+		
 		response.sendRedirect("protected/editContact.jsp");
 	}
 

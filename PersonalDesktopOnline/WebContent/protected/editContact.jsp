@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" type="text/css" href="../styles/ContactForm.css">
+<link rel="stylesheet" href="css/kickstart-forms.css" media="all" />
+<link rel="stylesheet" type="text/css" href="styles/ContactForm.css">
 <title>PDO - Kontakt bearbeiten</title>
 </head>
 <body>

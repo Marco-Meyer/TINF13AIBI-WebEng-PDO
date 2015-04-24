@@ -11,7 +11,7 @@
 <title>PDO - Kontakte</title>
 </head>
 	<div id="contacts-header">
-		<a href="home.html" class="button back">Zurück</a> 
+		<a href="home.jsp" class="button back">Zurück</a> 
 		<span id="contacts">Kontakte</span>
 		<form method="POST" action="../SearchContactServlet">
 			<input type="text" name="search" placeholder="Suchen">
