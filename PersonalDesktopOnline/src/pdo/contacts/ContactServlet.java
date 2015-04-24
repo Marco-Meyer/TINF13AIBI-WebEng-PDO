@@ -62,36 +62,11 @@ public class ContactServlet extends HttpServlet {
         String mail = (String) request.getParameter("mail");
         String telephone = (String) request.getParameter("telephone");
         String mobilephone = (String) request.getParameter("mobilephone");
-               
-        PreparedStatement ps = null;
-        try {
-        	
-            ps = connection.prepareStatement("insert into contact(UserID, prename, lastname, mail, telephone, mobilephone) values (?,?,?,?,?,?);");
-            ps.setString(1, userID);
-            ps.setString(2, prename);
-            ps.setString(3, lastName);
-            ps.setString(4, mail);
-            ps.setString(5, telephone);
-            ps.setString(6, mobilephone);
-             
-            ps.execute();
-
-            System.out.println("Writing to DB successful.");	
+        
+        DBConnectionManager.saveContactForUser(userID,prename,lastName, mail, telephone,mobilephone, connection);
                         
-           //request.getRequestDispatcher("protected/contacts.jsp").forward(request, response);
-            response.sendRedirect("protected/contacts.jsp");
-          
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally{
-            try {
-                ps.close();
-                connection.close();
-            } catch (SQLException e) {
-            	e.printStackTrace();
-            	System.out.println("Error while close connection.");
-            }
-        }
+       //request.getRequestDispatcher("protected/contacts.jsp").forward(request, response);
+    	response.sendRedirect("protected/contacts.jsp");
+         
 	}
 }

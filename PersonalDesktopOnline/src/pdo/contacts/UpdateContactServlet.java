@@ -42,44 +42,25 @@ public class UpdateContactServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		Connection connection = DBConnectionManager.getDBConnection();
+			Connection connection = DBConnectionManager.getDBConnection();
 			
-					String userID = request.getUserPrincipal().getName();
-					String prename = request.getParameter("prename");
-			        String lastName = request.getParameter("lastName");
-			        String mail = request.getParameter("mail");
-			        String telephone = request.getParameter("telephone");
-			        String mobilephone = request.getParameter("mobilephone");
-			        
-			        String oldPrename = request.getParameter("pre");
-			        String oldLastName = request.getParameter("last");
-			        String oldMail = request.getParameter("email");
-			        String oldTelephone = request.getParameter("phone");
-			        String oldMobilephone = request.getParameter("mphone");
-			               
-			        PreparedStatement ps = null;
-			        try {
-			        	String query = 
-	        			"UPDATE contact SET prename='" + prename + "', lastname='" + lastName + "', mail='" + mail + "', telephone='" + telephone + "', mobilephone='" + mobilephone + "' WHERE userID='" + userID + "' AND prename='" + oldPrename + "' AND lastname='" + oldLastName + "' AND mail='" + oldMail + "' AND telephone='" + oldTelephone + "' AND mobilephone='" + oldMobilephone + "'" ;
-			            ps = connection.prepareStatement(query);
-			            ps.execute();
+			String userID = request.getUserPrincipal().getName();
+			String prename = request.getParameter("prename");
+	        String lastName = request.getParameter("lastName");
+	        String mail = request.getParameter("mail");
+	        String telephone = request.getParameter("telephone");
+	        String mobilephone = request.getParameter("mobilephone");
+	        
+	        String oldPrename = request.getParameter("pre");
+	        String oldLastName = request.getParameter("last");
+	        String oldMail = request.getParameter("email");
+	        String oldTelephone = request.getParameter("phone");
+	        String oldMobilephone = request.getParameter("mphone");
+			             
+	        DBConnectionManager.modifyContactForUser(userID, prename,lastName,mail,telephone, mobilephone, oldPrename, oldLastName, oldMail, oldTelephone, oldMobilephone,  connection);
 
-			            System.out.println("Updating DB successful.");	
-			            //request.getRequestDispatcher("protected/contacts.jsp").forward(request, response);
-			            response.sendRedirect("protected/contacts.jsp");
-
-			        } catch (SQLException e) {
-			            e.printStackTrace();
-			        }finally{
-			            try {
-			                ps.close();
-			                connection.close();
-			            } catch (SQLException e) {
-			            	e.printStackTrace();
-			            	System.out.println("Error while close connection.");
-			            }
-			        }
-			}
-
+	        response.sendRedirect("protected/contacts.jsp");
 
 	}
+
+}

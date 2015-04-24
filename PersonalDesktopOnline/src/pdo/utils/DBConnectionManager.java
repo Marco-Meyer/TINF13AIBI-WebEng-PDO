@@ -2,12 +2,18 @@ package pdo.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+
+
+
+
 
 
 
@@ -134,9 +140,9 @@ public class DBConnectionManager {
 		}	 
 		return connection;
 	}
-static public List<Contact> selectContactsForUserWithBeginningLetter(String UserId, String letter){
+    
+    static public List<Contact> selectContactsForUserWithBeginningLetter(String UserId, String letter){
 		
-//		Connection connection=null;
 		Statement statement=null;
 		ResultSet resultSet=null;
 		String userID;
@@ -166,14 +172,12 @@ static public List<Contact> selectContactsForUserWithBeginningLetter(String User
 			}	
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
 			if (resultSet!=null) { 
 				try {
 					resultSet.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				resultSet=null; 
@@ -182,7 +186,6 @@ static public List<Contact> selectContactsForUserWithBeginningLetter(String User
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				statement=null; 
@@ -190,7 +193,6 @@ static public List<Contact> selectContactsForUserWithBeginningLetter(String User
 			try {
 				connection.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}         
 			connection=null;
@@ -198,10 +200,138 @@ static public List<Contact> selectContactsForUserWithBeginningLetter(String User
 		return contactList;
 	}
     
-    public static void saveContactForUser(){}
+    public static void saveContactForUser(String userID,String prename, String lastName, String mail, String telephone, String mobilephone, Connection connection){ 
+    	
+    	PreparedStatement ps = null;
     
-    public static void modifyContactForUser(){}
+	    try {	    	
+	        ps = connection.prepareStatement("insert into contact(UserID, prename, lastname, mail, telephone, mobilephone) values (?,?,?,?,?,?);");
+	        ps.setString(1, userID);
+	        ps.setString(2, prename);
+	        ps.setString(3, lastName);
+	        ps.setString(4, mail);
+	        ps.setString(5, telephone);
+	        ps.setString(6, mobilephone);
+	         
+	        ps.execute();
+	
+	        System.out.println("Writing to DB successful.");	      
+	
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }finally{
+	        try {
+	            ps.close();
+	            connection.close();
+	        } catch (SQLException e) {
+	        	e.printStackTrace();
+	        	System.out.println("Error while close connection.");
+	        }
+	    }
+    }
     
-    public static void deleteContactForUser(){}
+    public static void modifyContactForUser(String userID, String prename, String lastName, String mail, String telephone, String mobilephone, String oldPrename, String oldLastName, String oldMail, String oldTelephone, String oldMobilephone, Connection connection){
+    	
+    	 PreparedStatement ps = null;
+	        try {
+	        	String query = 
+	        			"UPDATE contact SET prename='" + prename + "', lastname='" + lastName + "', mail='" + mail + "', telephone='" + telephone + "', mobilephone='" + mobilephone + "' WHERE userID='" + userID + "' AND prename='" + oldPrename + "' AND lastname='" + oldLastName + "' AND mail='" + oldMail + "' AND telephone='" + oldTelephone + "' AND mobilephone='" + oldMobilephone + "'" ;
+	            ps = connection.prepareStatement(query);
+	            ps.execute();
+
+	            System.out.println("Updating DB successful.");	
+
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }finally{
+	            try {
+	                ps.close();
+	                connection.close();
+	            } catch (SQLException e) {
+	            	e.printStackTrace();
+	            	System.out.println("Error while close connection.");
+	            }
+	        }
+    }
+    
+    
+    public static List<Contact> searchContactForUser(String userID, String searchKey, Connection connection){
+    	Statement statement=null;
+		ResultSet resultSet=null;
+		String userId;
+		String preName;
+		String lastName;
+		String mail;
+		String telephone;
+		String mobilephone;
+		
+    	List<Contact> searchList = new ArrayList<>();
+		try {
+			statement = connection.createStatement();
+			String query = "SELECT * FROM contact WHERE UserID='"+ userID + "' AND prename like '%"+ searchKey + "%' OR lastname like '%"+ searchKey + "%';";
+			System.out.println(query);
+			resultSet = statement.executeQuery(query);
+			while(resultSet.next()){
+				userId = resultSet.getString("UserID");
+				preName = resultSet.getString("prename");
+				lastName = resultSet.getString("lastname");
+				mail = resultSet.getString("mail");
+				telephone = resultSet.getString("telephone");
+				mobilephone = resultSet.getString("mobilephone");
+				Contact contact = new Contact(userId, preName,lastName,mail,telephone,mobilephone);
+				searchList.add(contact);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			if (resultSet!=null) { 
+				try {
+					resultSet.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				resultSet=null; 
+			}    
+			if (statement!=null) { 
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				statement=null; 
+			}
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}         
+			connection=null;		
+		}
+		return searchList;
+    }
+    
+    
+    public static void deleteContactForUser(String userID, String prename, String lastName,String mail, String telephone, String mobilephone, Connection connection){
+    	
+    	PreparedStatement ps = null;
+        try {
+        	String query = "DELETE FROM contact WHERE UserID='" + userID + "' AND prename='" + prename + "' AND lastname='" + lastName + "' AND mail='" + mail + "' AND telephone='" + telephone + "' AND mobilephone='" + mobilephone + "'";
+            ps = connection.prepareStatement(query);
+            ps.execute();
+
+            System.out.println("Deleting from DB successful.");	
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally{
+            try {
+                ps.close();
+                connection.close();
+            } catch (SQLException e) {
+            	e.printStackTrace();
+            	System.out.println("Error while close connection.");
+            }
+        }
+    }
     
 }

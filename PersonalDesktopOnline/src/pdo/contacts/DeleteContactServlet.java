@@ -50,29 +50,10 @@ public class DeleteContactServlet extends HttpServlet {
         String mail = request.getParameter("email");
         String telephone = request.getParameter("phone");
         String mobilephone = request.getParameter("mphone");
-               
-        PreparedStatement ps = null;
-        try {
-        	String query = "DELETE FROM contact WHERE UserID='" + userID + "' AND prename='" + prename + "' AND lastname='" + lastName + "' AND mail='" + mail + "' AND telephone='" + telephone + "' AND mobilephone='" + mobilephone + "'";
-            ps = connection.prepareStatement(query);
-            ps.execute();
-
-            System.out.println("Deleting from DB successful.");	
-            //request.getRequestDispatcher("protected/contacts.jsp").forward(request, response);
-            response.sendRedirect("protected/contacts.jsp");
-            
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally{
-            try {
-                ps.close();
-                connection.close();
-            } catch (SQLException e) {
-            	e.printStackTrace();
-            	System.out.println("Error while close connection.");
-            }
-        }
-
+        
+        DBConnectionManager.deleteContactForUser(userID, prename, lastName, mail, telephone, mobilephone, connection);
+        //request.getRequestDispatcher("protected/contacts.jsp").forward(request, response);
+        response.sendRedirect("protected/contacts.jsp");
 
 	}
 

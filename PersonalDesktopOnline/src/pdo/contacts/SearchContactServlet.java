@@ -44,72 +44,16 @@ public class SearchContactServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Statement statement=null;
-		ResultSet resultSet=null;
-		String userId;
-		String preName;
-		String lastName;
-		String mail;
-		String telephone;
-		String mobilephone;
-		
-		List<Contact> searchList = new ArrayList<>();
 
-		Connection connection = DBConnectionManager.getDBConnection();
-		
+		Connection connection = DBConnectionManager.getDBConnection();		
 		String searchKey = request.getParameter("search");
+		String userID = request.getUserPrincipal().getName();
 		
-		try {
-			statement = connection.createStatement();
-			String query = "SELECT * FROM contact WHERE UserID='"+ request.getUserPrincipal().getName() + "' AND prename like '%"+ searchKey + "%' OR lastname like '%"+ searchKey + "%';";
-			System.out.println(query);
-			resultSet = statement.executeQuery(query);
-			while(resultSet.next()){
-				userId = resultSet.getString("UserID");
-				preName = resultSet.getString("prename");
-				lastName = resultSet.getString("lastname");
-				mail = resultSet.getString("mail");
-				telephone = resultSet.getString("telephone");
-				mobilephone = resultSet.getString("mobilephone");
-				Contact contact = new Contact(userId, preName,lastName,mail,telephone,mobilephone);
-				searchList.add(contact);
-			}
-
-			request.setAttribute("FIND", searchList);
-			request.getRequestDispatcher("protected/contactsResults.jsp").forward(request, response);
-			//response.sendRedirect("protected/contactsResults.jsp");
-			
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally{
-			if (resultSet!=null) { 
-				try {
-					resultSet.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				resultSet=null; 
-			}    
-			if (statement!=null) { 
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				statement=null; 
-			}
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}         
-			connection=null;
-		}
+		List<Contact> searchList = DBConnectionManager.searchContactForUser(userID, searchKey, connection);
+		request.setAttribute("FIND", searchList);
+		request.getRequestDispatcher("protected/contactsResults.jsp").forward(request, response);
+		//response.sendRedirect("protected/contactsResults.jsp");
+		
 	}
 }
 
